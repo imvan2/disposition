@@ -13,6 +13,17 @@ services:
       - 8000:8000
     volumes:
       - ./sample_service:/app
+  fastapi-accounts:
+    build:
+        context: ./fastapi-accounts
+        dockerfile: ./Dockerfile.dev
+    ports:
+        - 8001:8000
+    volumes:
+        - ./fastapi-accounts:/app
+    environment:
+      DATABASE_URL: postgresql://accounts:password@postgres/accounts
+      WAIT_HOSTS: postgres:5432
   postgres:
         build:
             context: ./relational-data
