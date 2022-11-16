@@ -1,12 +1,3 @@
-## Journals
-
-Please keep all of your individual journals in this directory.
-
-Each team member is required to keep a development journal, which should be a single markdown file with an entry for each day the project was worked on.
-
-Recommended naming convention is `first_last.md`.
-
-
 In the journals, every day that you work on the project, you must make an entry in your journal after you've finished that day. At a minimum, you will need to include the following information:
 
 The date of the entry
@@ -16,7 +7,7 @@ At least one ah-ha! moment that you had during your coding, however small
 Keep your journal in reverse chronological order. Always put new entries at the top.
 
 
-## SAMPLE ENTRY July 9, 2021
+## July 9, 2021
 
 Today, I worked on:
 
@@ -31,3 +22,24 @@ Today, I found the F2/Rename symbol functionality
 in Visual Studio Code! It allows me to rename a
 variable without causing bugs. I am going to be
 using this a lot!
+
+## July 7, 2021
+
+Today, I worked on:
+
+* Signing up a customer with Petra
+
+Petra and I had a hard time figuring out the logic
+for what happens when a customer signs up. We
+finally came to the conclusion that not only did we
+have to create the `User` record, but we also needed
+to create associated preference records **and** had
+to log them in.
+
+Today, database transactions finally clicked. It
+happened while we were trying to insert the
+preferences for the customer. We had a bug in the
+code, so the `User` record got created, but none
+of the preferences. All of the inserts should
+succeed or fail together. So, we used a transaction
+to do that.
