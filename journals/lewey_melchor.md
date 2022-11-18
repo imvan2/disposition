@@ -7,14 +7,18 @@ At least one ah-ha! moment that you had during your coding, however small
 Keep your journal in reverse chronological order. Always put new entries at the top.
 
 
-## July 9, 2021
+## November 16, 2022
 
-Today, I worked on:
+Today, we worked as a team:
 
-* Getting a customer's data for the account page
-  with Asa
+* Started Our FastAPI Project
 
-Asa and I wrote some SQL. We tested it out with
+Van, Thinh, Merrick and I worked together to build our Docker yaml file.
+We used it to build our accounts microservice, and then spent time group
+coding Python and SQL
+
+
+We tested it out with
 Insomnia and the UI. We had to coordinate with
 Petra who was working on the GHI with Azami.
 
