@@ -6,19 +6,23 @@ A reflection on any design conversations that you had
 At least one ah-ha! moment that you had during your coding, however small
 Keep your journal in reverse chronological order. Always put new entries at the top.
 
+## ENTRY November 18, 2021
 
-## SAMPLE ENTRY July 9, 2021
+* Worked on the readme's and we are planning on implementing account authorization in order to save playlists created by each user.
 
-Today, I worked on:
+## ENTRY November 17, 2021
 
-* Getting a customer's data for the account page
-  with Asa
+* Created the additional account routers and queries to update, create, and delete accounts.
 
-Asa and I wrote some SQL. We tested it out with
-Insomnia and the UI. We had to coordinate with
-Petra who was working on the GHI with Azami.
 
-Today, I found the F2/Rename symbol functionality
-in Visual Studio Code! It allows me to rename a
-variable without causing bugs. I am going to be
-using this a lot!
+* I also had additional practice on git pulls, clones, and merges.
+
+
+## ENTRY November 16, 2021
+
+* Create a Docker compose.yml file, the first file under migrations, and our first table, set up the routers, queries, and made our first post.
+
+* My group used the live share option in VS Code in order to group code.
+
+* Today, I found the importance of the placement of "," and ";" when writing SQL.
+
