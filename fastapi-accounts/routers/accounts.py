@@ -36,3 +36,10 @@ def get_one_account(
   if account is None:
     response.status_code = 404
   return account
+
+@router.put("/accounts/{id}", response_model= Union[AccountOut, Error])
+def update_account(
+  id: int,
+  account: AccountIn,
+  repo: AccountRepository = Depends(), )-> Union[Error, AccountOut]:
+  return repo.update(id, account)
