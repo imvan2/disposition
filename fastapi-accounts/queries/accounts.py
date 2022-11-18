@@ -121,6 +121,35 @@ class AccountRepository:
         print(e)
         return {"message": "dont feel like getting account data rn tbh"}
 
+    def update(self, id:int, account: AccountIn) -> Union[AccountOut, Error]:
+      try:
+        with pool.connection() as conn:
+          with conn.cursor() as db:
+            db.execute(
+              """
+              UPDATE accounts
+              SET first_name = %s
+              , last_name = %s
+              , username = %s
+              , password = %s
+              , email = %s
+              WHERE id = %s
+              """,
+              [
+                account.first_name,
+                account.last_name,
+                account.username,
+                account.password,
+                account.email,
+                id
+              ]
+            )
+            print(self.account_in_to_out(id,account))
+            return self.account_in_to_out(id,account)
+      except Exception as e:
+        return {"message":  e}
+
+
 
 
 
