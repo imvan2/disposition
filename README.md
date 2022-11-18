@@ -11,7 +11,7 @@ We are targeting general music consumers in the entertainment market who are loo
 
 ## Design
 
-* [Wire Dragrams](wiredigram.md)
+* [Wire Dragrams](wirediagram.md)
 * [Data models](data-model.md)
 
 
