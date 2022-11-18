@@ -78,5 +78,62 @@ class AccountRepository:
             return result
       except Exception as e:
         print(e)
-        return {"message": "made you look"}  
-        
+        return {"message": "made you look"}
+
+    def delete(self, id: int) -> bool:
+      try:
+        with pool.connection() as conn:
+          with conn.cursor() as db:
+            db.execute(
+              """
+                DELETE FROM accounts
+                WHERE id = %s
+              """,
+              [id]
+            )
+            return True
+      except Exception as e:
+        return False
+
+
+    def get_one(self, id: int) -> Optional[AccountOut]:
+      try:
+        with pool.connection() as conn:
+          with conn.cursor() as db:
+            result = db.execute(
+              """
+              SELECT id
+                , first_name
+                , last_name
+                , username
+                , password
+                , email
+              FROM accounts
+              WHERE id = %s;
+              """,
+              [id]
+            )
+            record = result.fetchone()
+            if record is None:
+              return None
+            return self.record_to_account_out(record)
+      except Exception as e:
+        print(e)
+        return {"message": "dont feel like getting account data rn tbh"}
+
+
+
+
+    def account_in_to_out(self, id:int, account: AccountIn):
+        old_data = account.dict()
+        return AccountOut(id=id, **old_data)
+
+    def record_to_account_out(self, record):
+      return AccountOut(
+        id = record[0],
+        first_name = record[1],
+        last_name = record[2],
+        username = record[3],
+        password = record[4],
+        email = record[5],
+      )
