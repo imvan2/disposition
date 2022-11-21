@@ -1,7 +1,14 @@
 ## Nov 18, 2022
 
 Due to malnutrition and lack of basic human needs, our energy has beeen rather low. While fighting exhaustion, and hunger pains we collectively mustered up the energy to piece together a half legible readme file. We hope to
-secure our camp tonight by creating authentication capabilities, updates coming soon... gottago feed my dog.
+secure our camp tonight by creating authentication capabilities, updates coming soon... gotta go feed my dog.
+
+Entry 2:
+Much was acheived today, miles of jungle were traversed, we are currently thick in the vines of code. It's humid and muggy here, but we will prevail! 
+We set out to build an authentication system for our accounts microservice, but the goal was a little too far to reach in one day. We decided to set up camp here for the night, with a looming router/authentication error. 
+We shall treck forward again come Monday morning, my plan is to focus on fixing the router, and Merrick will focus on the authenticator, so we can start making headway again. 
+I pray the gods will favor us on this journey.
+ - signing off
 
 ## Nov 17, 2022
 

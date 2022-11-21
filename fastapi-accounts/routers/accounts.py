@@ -1,20 +1,42 @@
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Response, Request
 from queries.accounts import (
+  Account,
   AccountIn,
   AccountRepository,
   AccountOut,
   Error)
 from typing import Union, List, Optional
+from jwtdown_fastapi.authentication import Token
+from pydantic import BaseModel
+from auth.authenticator import authenticator
+
+
+class AccountToken(Token):
+    account: AccountOut
+
+class AccountForm(BaseModel):
+    username: str
+    password: str
 
 router = APIRouter()
 
 
-@router.post("/signup", response_model=Union[AccountOut, Error])
-def create_account(account: AccountIn, repo: AccountRepository = Depends()):
-    return repo.create(account)
+@router.post("/signup", response_model=Union[AccountToken, Error])
+async def create_account(
+    info: AccountIn,
+    request: Request,
+    response: Response,
+    repo: AccountRepository = Depends()
+  ):
+    hashed_password = authenticator.hash_password(info.password)
+    
+    account = repo.create(info, hashed_password)
+    form = AccountForm(username=info.username, password=info.password)
+    token = await authenticator.login(response, request, form, repo)
+    return AccountToken(account=account, **token.dict())
 
 
-@router.get("/accounts", response_model=Union[Error, List[AccountOut]])
+@router.get("/accounts", response_model=Union[List[AccountOut], Error])
 def get_all(repo: AccountRepository = Depends()):
     return repo.get_all()
 
@@ -26,13 +48,13 @@ def del_account(
 ) -> bool:
     return repo.delete(id)
 
-@router.get("/accounts/{id}", response_model=Optional[AccountOut])
+@router.get("/accounts/{username}", response_model=Optional[Account])
 def get_one_account(
-  id: int,
+  username: str,
   response: Response,
   repo: AccountRepository = Depends(),
-) -> AccountOut:
-  account = repo.get_one(id)
+) -> Account:
+  account = repo.get_one(username)
   if account is None:
     response.status_code = 404
   return account
@@ -43,3 +65,26 @@ def update_account(
   account: AccountIn,
   repo: AccountRepository = Depends(), )-> Union[Error, AccountOut]:
   return repo.update(id, account)
+
+
+# @router.post("/api/protected")
+# async def get_protected(
+#     account_data: dict = Depends(authenticator.get_current_account_data),
+# ):
+#     return True
+
+
+
+# @router.get("/token", response_model=AccountToken | None)
+# async def get_token(
+#     request: Request, 
+#     account: AccountOut = Depends(authenticator.try_get_current_account_data)
+# ) -> AccountToken | None:
+#     if account and authenticator.cookie_name in request.cookies:
+#         return {
+#             "access_token": request.cookies[authenticator.cookie_name],
+#             "type": "Bearer",
+#             "account": account,
+#         }
+
+  #merick changed accountin to accountout

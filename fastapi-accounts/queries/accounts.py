@@ -18,12 +18,21 @@ class AccountOut(BaseModel):
     first_name: str
     last_name: str
     username: str
-    password: str
+    # password: str
     email: str
+
+class Account(BaseModel):
+  id: int
+  first_name: str
+  last_name: str
+  username: str
+  hashed_password: str
+  email: str
+
 
 
 class AccountRepository:
-    def create(self, account: AccountIn) -> AccountOut:
+    def create(self, account: AccountIn, hashed_password: str) -> Account:
         # create a pool of connections to connect the database (hello is someone there)
         with pool.connection() as conn:
 
@@ -35,7 +44,7 @@ class AccountRepository:
                 result = db.execute(
                     """
                 INSERT INTO accounts
-                  (first_name, last_name, username, password, email)
+                  (first_name, last_name, username, hashed_password, email)
                 VALUES
                   (%s, %s, %s, %s, %s)
                 RETURNING id;
@@ -44,7 +53,7 @@ class AccountRepository:
                         account.first_name,
                         account.last_name,
                         account.username,
-                        account.password,
+                        hashed_password,
                         account.email,
                     ],
                 )
@@ -52,27 +61,25 @@ class AccountRepository:
                 old_data = account.dict()
                 return AccountOut(id=id, **old_data)
 
-    def get_all(self) -> Union[Error, List[AccountOut]]:
+    def get_all(self) -> Union[List[AccountOut], Error]:
       try:
         with pool.connection() as conn:
           with conn.cursor() as db:
             db.execute(
               """
-              SELECT id, first_name, last_name, username, password, email
+              SELECT id, first_name, last_name, username, email
               FROM accounts
               ORDER BY id;
               """
             )
             result = []
             for record in db:
-              print("record", record)
               account = AccountOut(
                 id = record[0],
                 first_name = record[1],
                 last_name = record[2],
                 username = record[3],
-                password = record[4],
-                email = record[5]
+                email = record[4]
               )
               result.append(account)
             return result
@@ -96,7 +103,7 @@ class AccountRepository:
         return False
 
 
-    def get_one(self, id: int) -> Optional[AccountOut]:
+    def get_one(self, username: str) -> Optional[Account]:
       try:
         with pool.connection() as conn:
           with conn.cursor() as db:
@@ -106,17 +113,25 @@ class AccountRepository:
                 , first_name
                 , last_name
                 , username
-                , password
+                , hashed_password
                 , email
               FROM accounts
-              WHERE id = %s;
+              WHERE username = %s;
               """,
-              [id]
+              [username]
             )
             record = result.fetchone()
+            print("record:", record)
             if record is None:
               return None
-            return self.record_to_account_out(record)
+            return Account(
+              id=record[0],
+              first_name=record[1],
+              last_name=record[2],
+              username=record[3],
+              hashed_password=record[4],
+              email=record[5]
+              )
       except Exception as e:
         print(e)
         return {"message": "dont feel like getting account data rn tbh"}
@@ -131,7 +146,6 @@ class AccountRepository:
               SET first_name = %s
               , last_name = %s
               , username = %s
-              , password = %s
               , email = %s
               WHERE id = %s
               """,
@@ -139,7 +153,6 @@ class AccountRepository:
                 account.first_name,
                 account.last_name,
                 account.username,
-                account.password,
                 account.email,
                 id
               ]
@@ -163,6 +176,5 @@ class AccountRepository:
         first_name = record[1],
         last_name = record[2],
         username = record[3],
-        password = record[4],
-        email = record[5],
+        email = record[4],
       )
