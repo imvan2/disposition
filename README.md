@@ -1,6 +1,6 @@
 # Disposition
 * Thinh Mai
-* Merick Szeto
+* Merick
 * Lewey Melchor
 * Van Tu
 
