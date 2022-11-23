@@ -36,6 +36,17 @@ services:
     environment:
       DATABASE_URL: postgresql://quiz:password@postgres/quiz
       WAIT_HOSTS: postgres:5432
+  fastapi-playlist:
+    build:
+        context: ./fastapi-playlists
+        dockerfile: ./Dockerfile.dev
+    ports:
+        - 8003:8000
+    volumes:
+        - ./fastapi-playlists:/app
+    environment:
+      DATABASE_URL: postgresql://playlists:password@postgres/playlists
+      WAIT_HOSTS: postgres:5432
   postgres:
         build:
             context: ./relational-data
