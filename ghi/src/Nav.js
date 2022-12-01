@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-
+// import Logo_Light from './Images/Logo_Light.png';
+// <img src={Logo_Light} width={100} height={100} />
 
 function Nav() {
   // something here to hide login/sign up links when the user is already logged in
@@ -8,7 +9,7 @@ function Nav() {
   return (
     <nav className="navbar navbar-dark bg-dark">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">Disposition</NavLink>
+          <NavLink className="navbar-brand" to="/"><img height="25%" alt="Disposition logo" src='/images/Logo.png' /></NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -22,8 +23,10 @@ function Nav() {
                     <li><NavLink className="nav-link ms-3" to="/Vibecheck">Vibe Check</NavLink></li>
                     <li><NavLink className="nav-link ms-3" to="/Login">Login</NavLink></li>
                     <li><NavLink className="nav-link ms-3" to="/SignupForm">Sign-up</NavLink></li>
+                    <li><NavLink className="nav-link ms-3" to="/Results">Results</NavLink></li>
                     <li><NavLink className="nav-link ms-3" to="">History</NavLink></li>
                     <li><NavLink className="nav-link ms-3" to="/Hot-100">Hot-100</NavLink></li>
+                    <li><NavLink className="nav-link ms-3" to="/">Logout</NavLink></li>
                 </ul>
             </div>
           </div>

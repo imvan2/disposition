@@ -61,6 +61,7 @@ return (
       </div>
       <button className="btn btn-primary">Create</button>
       {submitted && <div className='success-message'>Success! Thank you for registering</div>}
+      <p>Already a member? Login <a href="http://localhost:3000/Login">here</a></p>
   </form>
 );
 }

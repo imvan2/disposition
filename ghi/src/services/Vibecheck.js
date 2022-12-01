@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
-import './Loading.css'
 
-const PersonalityForm = () =>{
+
+const Vibecheck = () =>{
   const [firstQ, setFirstQ] = useState("");
   const [secondQ, setSecondQ] = useState("");
   const [thirdQ, setThirdQ] = useState("");
   const [fourthQ, setFourthQ] = useState("");
   const [fifthQ, setfifthQ] = useState("");
   const [sixthQ, setGenre] = useState("");
-
 
   const options = ["Choose..", "Crocs", "Sneakers", "Sandals", "Slippers"];
   const [selected, setSelected] = useState(options[0]);
@@ -63,30 +62,6 @@ const PersonalityForm = () =>{
         // data.total =data.firstQ+ data.secondQ+ data.thirdQ+ data.fourthQ + data.fifthQ+ data.sixthQ
         // delete data.
 
-        //gloomy Mellow upbeat Energetic
-        //  1        2     3       4
-        //       const data = {first_name, last_name, username, password, email};
-
-        //       const signupUrl = "http://localhost:8001/signup";
-        //       const fetchConfig = {
-        //           method :"POST",
-        //           body: JSON.stringify(data),
-        //           headers : {
-        //               "Content-Type": "application/json",
-        //           }
-        //       }
-        //       console.log("FETCH:::", fetchConfig)
-        //       const response = await fetch(signupUrl, fetchConfig)
-        //       console.log("response::", response)
-        //       if (response.ok) {
-        //         const newUser = await response.json();
-        //         setEmail("");
-        //         setUsername("");
-        //         setPassword("");
-        //         setFirstName("");
-        //         setLastName("");
-        //         setSubmitted(true);
-        //       }
   };
 
   //first question answer
@@ -165,9 +140,6 @@ const PersonalityForm = () =>{
   };
 
  // sixth question answers
-  // const neat = () => {
-  //   setsixth(1)
-  // };
   const genre = async (e) => {
     e.preventDefault()
     setGenre(e.target.value)
@@ -186,8 +158,8 @@ const PersonalityForm = () =>{
     <br></br>
     <div className="jumbotron jumbotron-fluid" className="p-3 mb-2 bg-dark text-white">
       <div className="container"></div>
-        <h1 className="display-4">Personality Quiz</h1>
-        <p className="lead">Using advance AI technology, a personalized playlist will be given from the results</p>
+        <h1 className="display-4">Vibe Check</h1>
+        <p className="lead">Using advance AI technology, a personalized playlist will be delivered from the ether, straight to your tympanic membrane</p>
       </div>
     {/* </div> */}
     <br></br>
@@ -309,4 +281,4 @@ const PersonalityForm = () =>{
   );
 }
 
-export default PersonalityForm
+export default Vibecheck;

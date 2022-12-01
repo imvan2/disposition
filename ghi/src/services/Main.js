@@ -1,40 +1,3 @@
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import {useEffect, useState} from 'react';
-
-
-
-
-
-// function TopHits() {
-
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       "X-RapidAPI-Key": "4f3acccf77msh618eb26dc33adcbp1efe23jsn49ef60bca91e",
-//       "X-RapidAPI-Host": "billboard-api2.p.rapidapi.com",
-//     },
-//   };
-
-//   const [data, setData] = useState([]);
-
-//   async function gettingBillboard() {
-//       const response = await fetch(
-//         "https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-11-26",
-//         options
-//       )
-//         .then(data.json())
-//         .catch((err) => console.error(err));
-
-//       setData(data)
-//     }
-
-
-//   useEffect(() => {
-//     console.log("useEffect ran");
-//     gettingBillboard(); }, []);
-
-//   console.log("data:::::", data);
-
 //STARTS HERE
   const TopHits = () => {
     const data = [{'rank': '1', 'title': 'Anti-Hero', 'artist': 'Taylor Swift', 'weeks at no.1': '4', 'last week': '1', 'peak position':'1', 'weeks on chart': '4', 'album': 'https://charts-static.billboard.com/img/2022/10/taylor-swift-824-antihero-fgo-180x180.jpg'},
@@ -48,39 +11,24 @@
                   {'rank': '9', 'title': 'Spin Bout U', 'artist': 'Drake & 21 Savage', 'last week': '5', 'peak position': '5', 'weeks on chart': '2', 'album': 'https://charts-static.billboard.com/img/2009/04/drake-04g-180x180.jpg'},
                   {'rank': '10', 'title': 'On BS', 'artist': 'Drake & 21 Savage', 'last week': '4', 'peak position': '4', 'weeks on chart': '2', 'album': 'https://charts-static.billboard.com/img/2009/04/drake-04g-180x180.jpg'}]
     console.log(typeof(data))
-  //   const options = {
-  //     method: "GET",
-  //     headers: {
-  //       "X-RapidAPI-Key": "b42d5029a5mshb87ed9e4c8e1dd5p1f3c44jsn69ebf416a9b1",
-  //       "X-RapidAPI-Host": "billboard-api2.p.rapidapi.com",
-  //     },
-  //   };
 
-	// const [songs, setSongs] = useState([]);
-
-	// useEffect(() => {
-	// 	const fetchBillBoard = async () => {
-	// 		const url = "https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-11-26";
-	// 		const response = await fetch(url, options);
-
-	// 		if (response.ok) {
-	// 			const data = await response.json();
-	// 			setSongs(data.content);
-	// 		}
-	// 	};
-	// 	fetchBillBoard();
-	// }, []);
-
-  // console.log("songs:::::", songs)
   return (
-    <>
-      <div className="px-4 py-5 my-5 text-center">
-        <h1 className="display-5 fw-bold">Disposition</h1>
+    <div>
+      <div className="col-xs-12 center-block text-center"></div>
+      <img src='../images/Logo.png' alt="failure" />
+        {/* <h1 className="animate__lightSpeedInRight display-5 fw-bold"></h1> */}
         <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4">
-            The premiere solution for finding music that fits your vibe (;!
+          <p className="display-5 animate__zoomInDown mt-5 h-100 d-flex  align-items-center justify-content-center">
+            The premiere solution for finding music that fits your vibe!
           </p>
+          <h1 className="display-5 fw-bold"> <img src={test} alt=""/></h1>
           <br></br>
+          <br></br>
+          <a href="/Vibecheck" button type="button" className= "animate__zoomInDown btn btn-primary btn-lg justify-content-center">Get a Vibe Check</a>
+          <br></br>
+          <br></br>
+          <br></br>
+          <div className="animate__zoomInDown shadow-lg p-3 mb-5 bg-white rounded">
           <h1>Top 100 Hits</h1>
           <br></br>
           <table className="table table-striped">
@@ -89,6 +37,8 @@
                   <th>Rank</th>
                   <th>Title</th>
                   <th>Artist</th>
+                  <th>Wks on Chart</th>
+                  <th>Peak Pos</th>
                   <th>Album Image</th>
               </tr>
             </thead>
@@ -100,7 +50,11 @@
                       <td>{song.rank}</td>
                       <td>{song.title}</td>
                       <td>{song.artist}</td>
-                      <td><img width={"100%"} src={song.album}></img></td>
+                      <td>{song["weeks on chart"]}</td>
+                      <td>{song["peak position"]}</td>
+                      <td><img width={"100%"} src={song.album} alt=""></img></td>
+
+
                     </tr>
                     )
                   })}
@@ -108,7 +62,10 @@
             </table>
         </div>
       </div>
-    </>
+      </div>
+
+
+
   );
 }
 

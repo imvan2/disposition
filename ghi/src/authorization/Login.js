@@ -5,29 +5,6 @@ const LoginForm = () =>{
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-
-  // const handleSubmit = async(event) =>{
-  //       event.preventDefault();
-  //       const data = {username, password};
-
-  //       const loginUrl = "http://localhost:8001/login";
-  //       const fetchConfig = {
-  //           method :"POST",
-  //           body: JSON.stringify(data),
-  //           headers : {
-  //               "Content-Type": "application/json",
-  //           }
-  //       }
-  //       console.log("FETCH:::", fetchConfig)
-  //       const response = await fetch(signupUrl, fetchConfig)
-  //       console.log("response::", response)
-  //       if (response.ok) {
-  //         const newUser = await response.json();
-  //         setUsername("");
-  //         setPassword("");
-  //         setSubmitted(true);
-  //       }
-//}
   async function login(username, password) {
   const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/token`;
 
@@ -76,6 +53,8 @@ const LoginForm = () =>{
 
         <button className="btn btn-primary">Login</button>
         <div className='success-message'>Welcome back! Great seeing you again. Can I get you a cup of tea?</div>
+        <p>Not a membe yet? Sign-up <a href="http://localhost:3000/SignupForm">here</a></p>
+       
     </form>
     </>
 
