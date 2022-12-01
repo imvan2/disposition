@@ -6,31 +6,29 @@ function Nav() {
   // something here to show history when a user is logged in
 
   return (
-  <nav className="navbar navbar-dark bg-dark">
-    <div className="container-fluid">
-      <NavLink className="navbar-brand" to="/">Disposition</NavLink>
-      <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="offcanvas offcanvas-end show text-bg-dark" data-bs-scroll="true" tabIndex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div className="offcanvas-header text-bg-dark">
-          <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
-          <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <nav className="navbar navbar-dark bg-dark">
+        <div className="container-fluid">
+          <NavLink className="navbar-brand" to="/">Disposition</NavLink>
+          <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="offcanvas offcanvas-end text-bg-dark" data-bs-scroll="true" tabIndex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div className="offcanvas-header bg-secondary text-white">
+              <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div className="offcanvas-body bg-success p-3 mb-2 bg-dark text-white">
+                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li><NavLink className="nav-link ms-3" to="/Vibecheck">Vibe Check</NavLink></li>
+                    <li><NavLink className="nav-link ms-3" to="/Login">Login</NavLink></li>
+                    <li><NavLink className="nav-link ms-3" to="/SignupForm">Sign-up</NavLink></li>
+                    <li><NavLink className="nav-link ms-3" to="">History</NavLink></li>
+                    <li><NavLink className="nav-link ms-3" to="/Hot-100">Hot-100</NavLink></li>
+                </ul>
+            </div>
+          </div>
         </div>
-        <div className="offcanvas-body bg-success">
-
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li><NavLink className="nav-link ms-3" to="">Vibe Check</NavLink></li>
-                <li><NavLink className="nav-link ms-3" to="">Login</NavLink></li>
-                <li><NavLink className="nav-link ms-3" to="">Signup</NavLink></li>
-                <li><NavLink className="nav-link ms-3" to="">History</NavLink></li>
-                <li><NavLink className="nav-link ms-3" to="/Hot-100">Hot-100</NavLink></li>
-            </ul>
-
-        </div>
-      </div>
-    </div>
-  </nav>
+      </nav>
   );
 }
 

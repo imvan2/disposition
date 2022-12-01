@@ -3,7 +3,7 @@ import './App.css';
 import axios from "axios";
 
 function Hot() {
-    // From developer dashboard
+    // From developer dashboard THIS NEEDS TO MOVE TOBACKEND
     const CLIENT_ID = "5a2a9a022fc549efae7b97b447d43b5c"
     // must be set in the developer dashboard (source of Under Construction Warning)
     const REDIRECT_URI = "http://localhost:3000/Hot-100"

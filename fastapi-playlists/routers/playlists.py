@@ -12,6 +12,8 @@ from queries.playlists import (
 router = APIRouter()
 # where this file is stored
 
+
+
 @router.post("/playlists", response_model = PlaylistOut)
 def create_playlist(
     playlist: PlaylistIn,
