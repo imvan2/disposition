@@ -12,6 +12,8 @@ from queries.playlists import (
 router = APIRouter()
 # where this file is stored
 
+
+
 @router.post("/playlists", response_model = PlaylistOut)
 def create_playlist(
     playlist: PlaylistIn,
@@ -23,6 +25,7 @@ def create_playlist(
 def get_all(
     repo: PlaylistRepo = Depends(),
 ):
+    print("playlistgetall:",repo.get_all())
     return repo.get_all()
 
 @router.put("/playlists/{id}", response_model=Union[PlaylistOut, Error])

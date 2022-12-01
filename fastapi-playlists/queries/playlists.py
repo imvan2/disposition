@@ -125,6 +125,7 @@ class PlaylistRepo:
                         )
                         result = []
                         for record in db:
+                            print("record:::::",record)
                             playlist = PlaylistOut(
                                 user_id=record[0],
                                 search_term=record[1],

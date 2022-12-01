@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "axios": "^1.2.0",
+    "billboard-top-100": "^2.6.5",
+    "react-router-dom": "^6.4.3"
+  }
+}

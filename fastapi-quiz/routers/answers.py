@@ -1,13 +1,23 @@
-from fastapi import APIRouter, Depends, Response, Request
+from fastapi import APIRouter, Depends, Response, Request, HTTPException, status
 from queries.answers import AnswerIn, AnswerOut, AnswerRepo, Error
 from typing import List, Optional, Union
+from token_auth import get_current_user
 
 
 router = APIRouter()
 
+not_authorized = HTTPException(
+    status_code=status.HTTP_401_UNAUTHORIZED,
+    detail="Invalid authentication credentials",
+    headers={"WWW-Authenticate": "Bearer"},
+)
+
+
+
 @router.get("/answers", response_model=Union[List[AnswerOut], Error])
 def get_all(
     repo: AnswerRepo = Depends(),
+    account: dict = Depends(get_current_user),
 ):
     return repo.get_all()
 
@@ -15,9 +25,9 @@ def get_all(
 @router.post("/answers", response_model = AnswerOut)
 def create_answer(
     answer:AnswerIn,
-    repo: AnswerRepo = Depends()
+    repo: AnswerRepo = Depends(),
+    account: dict = Depends(get_current_user),
     ):
-
     return repo.create(answer)
 
 @router.delete("/answers/{q_number}", response_model=bool)
