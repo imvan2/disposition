@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TopHits from "./Main";
+import TopHits from "./services/Main";
 import Nav from "./Nav";
-import Hot from './Hot-100';
-import SignupForm from './Signup';
-import LoginForm from './Login';
-import PersonalityForm from './PersonalityForm'
-import { AuthProvider, useToken } from "./auth.js";
+import Hot from './in-progress/Hot-100';
+import SignupForm from './authorization/Signup';
+import LoginForm from './authorization/Login';
+import Vibecheck from './services/Vibecheck'
+import { AuthProvider, useToken } from "./in-progress/auth.js";
+import ResultsPage from './Results.js';
 
 function GetToken() {
     // Get token from JWT cookie (if already logged in)
@@ -24,8 +25,8 @@ function App() {
             <Route path="/Hot-100" element={<Hot/>} />
             <Route path="/SignupForm" element={<SignupForm/>} />
             <Route path="/Login" element={<LoginForm/>} />
-            <Route path="/Login" element={<LoginForm/>} />
-            <Route path="/Vibecheck" element={<PersonalityForm/>} />
+            <Route path="/Vibecheck" element={<Vibecheck/>} />
+            <Route path="/Results" element={<ResultsPage/>} />
           </Routes>
         </div>
       </BrowserRouter>
