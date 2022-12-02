@@ -1,4 +1,5 @@
 //STARTS HERE
+import '../ResultsAnimation.css';
   const TopHits = () => {
     const data = [{'rank': '1', 'title': 'Anti-Hero', 'artist': 'Taylor Swift', 'weeks at no.1': '4', 'last week': '1', 'peak position':'1', 'weeks on chart': '4', 'album': 'https://charts-static.billboard.com/img/2022/10/taylor-swift-824-antihero-fgo-180x180.jpg'},
                   {'rank': '2', 'title': 'Rich Flex', 'artist': 'Drake & 21 Savage', 'last week': '2', 'peak position': '2', 'weeks on chart': '2', 'album': 'https://upload.wikimedia.org/wikipedia/en/a/a5/Her_Loss.jpeg'},
@@ -10,18 +11,17 @@
                   {'rank': '8', 'title': 'Lift Me Up', 'artist': 'Rihanna', 'last week': '22', 'peak position': '2', 'weeks on chart': '3', 'album': 'https://upload.wikimedia.org/wikipedia/en/4/43/Rihanna_-_Lift_Me_Up.png'},
                   {'rank': '9', 'title': 'Spin Bout U', 'artist': 'Drake & 21 Savage', 'last week': '5', 'peak position': '5', 'weeks on chart': '2', 'album': 'https://charts-static.billboard.com/img/2009/04/drake-04g-180x180.jpg'},
                   {'rank': '10', 'title': 'On BS', 'artist': 'Drake & 21 Savage', 'last week': '4', 'peak position': '4', 'weeks on chart': '2', 'album': 'https://charts-static.billboard.com/img/2009/04/drake-04g-180x180.jpg'}]
-    console.log(typeof(data))
+
 
   return (
     <div>
       <div className="col-xs-12 center-block text-center"></div>
-      <img src='../images/Logo.png' alt="failure" />
         {/* <h1 className="animate__lightSpeedInRight display-5 fw-bold"></h1> */}
         <div className="col-lg-6 mx-auto">
           <p className="display-5 animate__zoomInDown mt-5 h-100 d-flex  align-items-center justify-content-center">
             The premiere solution for finding music that fits your vibe!
           </p>
-          <h1 className="display-5 fw-bold"> <img src={test} alt=""/></h1>
+          <h1 className="display-5 fw-bold"></h1>
           <br></br>
           <br></br>
           <a href="/Vibecheck" button type="button" className= "animate__zoomInDown btn btn-primary btn-lg justify-content-center">Get a Vibe Check</a>
@@ -44,9 +44,9 @@
             </thead>
             <tbody>
 
-                  {data.map(song => {
+                  {data.map((song, id) => {
                   return(
-                    <tr>
+                    <tr key={id}>
                       <td>{song.rank}</td>
                       <td>{song.title}</td>
                       <td>{song.artist}</td>
