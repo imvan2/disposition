@@ -1,64 +1,67 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
+import { useToken, useAuthContext, getTokenInternal } from "./useToken";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () =>{
-  // const [submitted, setSubmitted] =useState(false);
+function Login() {
+  const [, login] = useToken();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  async function login(username, password) {
-  const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/token`;
+  const { token } = useAuthContext();
+  console.log("token 1 from login::", token)
 
-  const form = new FormData();
-  form.append("username", username);
-  form.append("password", password);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const name = await login(username, password);
 
-  const response = await fetch(url, {
-    method: "post",
-    credentials: "include",
-    body: form,
-  });
-  if (response.ok) {
-    const tokenUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/token`;
+    if (name !== null) {
+      navigate("/Vibecheck");
+    } else {
+      navigate("/SignupForm");
+    }
 
-    try {
-      const response = await fetch(tokenUrl, {
-        credentials: "include",
-      });
-      if (response.ok) {
-        const data = await response.json();
-        const token = data.access_token;
-        // DO SOMETHING WITH THE TOKEN SO YOU CAN USE IT
-        // IN REQUESTS TO YOUR NON-ACCOUNTS SERVICES
-      }
-    } catch (e) {}
-    return false;
-  }
-  let error = await response.json();
-  // DO SOMETHING WITH THE ERROR, IF YOU WANT
-}
-
+  };
   return (
     <>
-    <br></br>
-    <br></br>
-      <form>
-        <div className= "mb-3">
-            <label htmlFor="username" className="form-label">User Name</label>
-            <input required value={username} onChange={e => setUsername(e.target.value)} type="text" className="form-control" id="username" placeholder="Username" />
+      <br></br>
+      <br></br>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="username" className="form-label">
+            User Name
+          </label>
+          <input
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            className="form-control"
+            id="username"
+            placeholder="Username"
+          />
         </div>
-        <div className= "mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input required value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" id="password" placeholder="shhhhhh" />
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="shhhhhh"
+          />
         </div>
-
         <button className="btn btn-primary">Login</button>
-        <div className='success-message'>Welcome back! Great seeing you again. Can I get you a cup of tea?</div>
-        <p>Not a membe yet? Sign-up <a href="http://localhost:3000/SignupForm">here</a></p>
-       
-    </form>
+        <div className="success-message">
+          Welcome back! Great seeing you again. Can I get you a cup of tea?
+        </div>
+        <p>
+          Not a member yet? Sign-up{" "}
+          <a href="http://localhost:3000/SignupForm">here</a>
+        </p>
+      </form>
     </>
-
-);
+  );
 }
 
-export default LoginForm
+export default Login;
