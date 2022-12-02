@@ -36,6 +36,7 @@ services:
     environment:
       DATABASE_URL: postgresql://quiz:password@postgres/quiz
       WAIT_HOSTS: postgres:5432
+      SIGNING_KEY: 4ff6a7021b505ebc0c182005e8e8845e19b428f86285a51e5dbb1763e209de4f
   fastapi-playlist:
     build:
         context: ./fastapi-playlists
@@ -73,4 +74,4 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
+      REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8001
