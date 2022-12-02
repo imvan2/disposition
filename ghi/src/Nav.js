@@ -26,7 +26,6 @@ function Nav() {
                     <li><NavLink className="nav-link ms-3" to="/Results">Results</NavLink></li>
                     <li><NavLink className="nav-link ms-3" to="">History</NavLink></li>
                     <li><NavLink className="nav-link ms-3" to="/Hot-100">Hot-100</NavLink></li>
-                    <li><NavLink className="nav-link ms-3" to="/">Logout</NavLink></li>
                 </ul>
             </div>
           </div>
