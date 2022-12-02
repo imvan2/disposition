@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TopHits from "./services/Main";
+import TopHits from "./services/Main.js";
 import Nav from "./Nav";
 import Hot from './in-progress/Hot-100';
 import SignupForm from './authorization/Signup';
