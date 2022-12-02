@@ -1,6 +1,5 @@
 //STARTS HERE
 import '../ResultsAnimation.css';
-import '../ResultsAnimation.css';
 
   const TopHits = () => {
     const data = [{'rank': '1', 'title': 'Anti-Hero', 'artist': 'Taylor Swift', 'weeks at no.1': '4', 'last week': '1', 'peak position':'1', 'weeks on chart': '4', 'album': 'https://charts-static.billboard.com/img/2022/10/taylor-swift-824-antihero-fgo-180x180.jpg'},
@@ -60,8 +59,6 @@ import '../ResultsAnimation.css';
                       <td>{song["weeks on chart"]}</td>
                       <td>{song["peak position"]}</td>
                       <td><img width={"100%"} src={song.album} alt=""></img></td>
-
-
                     </tr>
                     )
                   })}
