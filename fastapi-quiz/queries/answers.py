@@ -4,22 +4,18 @@ from queries.pool import pool
 
 class Error(BaseModel):
     message:str
-    
+
 class AnswerIn(BaseModel):
     user_id: int
-    q_number: int
-    question: str
-    answer: str
-    value: int
-    
+    mood: str
+    genre: int
+
 class AnswerOut(BaseModel):
     id: int
     user_id: int
-    q_number: int
-    question: str
-    answer: str
-    value: int
-    
+    mood: str
+    genre: int
+
 class AnswerRepo:
     def create(self, answer: AnswerIn) -> AnswerOut:
         with pool.connection() as conn:
@@ -28,19 +24,15 @@ class AnswerRepo:
                     """
                     INSERT INTO quiz_answer
                         (user_id,
-                        q_number,
-                        question,
-                        answer,
-                        value)
+                        mood,
+                        genre)
                     VALUES
                         (%s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [answer.user_id,
-                     answer.q_number,
-                     answer.question,
-                     answer.answer,
-                     answer.value]
+                     answer.mood,
+                     answer.genre]
                 )
                 id = result.fetchone()[0]
                 old_data = answer.dict()
@@ -54,24 +46,19 @@ class AnswerRepo:
               """
               SELECT
                     user_id,
-                    q_number,
-                    question,
-                    answer,
-                    value,
-                    id
+                    mood,
+                    genre
               FROM quiz_answer
-              ORDER BY q_number;
+              ORDER BY id;
               """
             )
             result = []
             for record in db:
               answer = AnswerOut(
                 user_id = record[0],
-                q_number = record[1],
-                question = record[2],
-                answer = record[3],
-                value = record[4],
-                id = record[5]
+                mood = record[1],
+                genre = record[2],
+                id = record[3]
               )
               result.append(answer)
             return result
@@ -79,23 +66,20 @@ class AnswerRepo:
         print(e)
         return {"message": "dont forget to call your mom"}
 
-    def get_one(self, q_number: int) -> Optional[AnswerOut]:
+    def get_one(self, id: int) -> Optional[AnswerOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT 
+                        SELECT
                           user_id,
-                          q_number,
-                          question,
-                          answer,
-                          value,
-                          id
+                          mood,
+                          genre
                         FROM quiz_answer
-                        WHERE q_number = %s;
+                        WHERE id = %s;
                         """,
-                        [q_number]
+                        [id]
                     )
                     record = result.fetchone()
                     print("record:", record)
@@ -103,27 +87,25 @@ class AnswerRepo:
                         return None
                     return AnswerOut(
                         user_id = record[0],
-                        q_number = record[1],
-                        question = record[2],
-                        answer = record[3],
-                        value = record[4],
-                        id = record[5]
+                        mood = record[1],
+                        genre = record[2],
+                        id = record[3]
                     )
         except Exception as e:
             print(e)
             return {"message": "did you expect something different?"}
-                    
-                         
-    def delete(self, q_number: int) -> bool:
+
+
+    def delete(self, id: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
                             DELETE FROM quiz_answer
-                            WHERE q_number = %s
+                            WHERE id = %s
                             """,
-                            [q_number]
+                            [id]
                     )
                     return True
         except Exception as e:
@@ -138,17 +120,13 @@ class AnswerRepo:
                         """
                         UPDATE quiz_answer
                         SET
-                            q_number = %s,
-                            question = %s,
-                            answer = %s,
-                            value = %s
+                            mood = %s,
+                            genre = %s
                         WHERE id = %s
                         """,
                         [
-                        answer.q_number,
-                        answer.question,
-                        answer.answer,
-                        answer.value,
+                        answer.mood,
+                        answer.genre,
                         id
                         ]
                     )

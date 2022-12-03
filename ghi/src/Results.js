@@ -25,24 +25,24 @@ const ResultsPage = () => {
                             </div>
                         </div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Song 1</li>
-                        <li class="list-group-item">Song 2</li>
-                        <li class="list-group-item">Song 3</li>
-                        <li class="list-group-item">Song 4</li>
-                        <li class="list-group-item">Song 5</li>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item">Song 1</li>
+                        <li className="list-group-item">Song 2</li>
+                        <li className="list-group-item">Song 3</li>
+                        <li className="list-group-item">Song 4</li>
+                        <li className="list-group-item">Song 5</li>
                     </ul>
                 </div>
                 <br />
                 <br />
                 <br />
-                <div className="card mb-3 mt-3 center" style={{"width": "900px", "text-align":"center"}} id="div2">
+                <div className="card mb-3 mt-3 center" style={{"width": "900px", "textAlign":"center"}} id="div2">
                     <h2>How'd you like the playlist?</h2>
-                    <button class="button"><iconify-icon icon="mdi:thumb-up-outline" width="100" onClick={handleClick}></iconify-icon></button>
-                    <button class="button"><iconify-icon icon="mdi:thumb-up-outline" width="100" rotate="180deg" onClick={handleClick}></iconify-icon></button>
+                    <button className="button"><iconify-icon icon="mdi:thumb-up-outline" width="100" onClick={handleClick}></iconify-icon></button>
+                    <button className="button"><iconify-icon icon="mdi:thumb-up-outline" width="100" rotate="180deg" onClick={handleClick}></iconify-icon></button>
                 </div>
             </div>
-        </> 
+        </>
     )
 }
 

@@ -46,7 +46,7 @@ const Vibecheck = () =>{
         else if (total === 4) {
           disposition ="energetic";
         }
-        const mood = disposition + genreStr
+        const mood = disposition + " " + genreStr
         setSubmitted(true);
 
         // if user authenticated
@@ -54,7 +54,7 @@ const Vibecheck = () =>{
 
         // if user NOT authenticated
         // navigate to login/signup
-        navigate('/Login', {state: mood})
+        navigate('/Spot2', {state: {result: mood}})
         console.log(mood);
 
         // save genre+outcome

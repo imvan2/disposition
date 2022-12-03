@@ -8,9 +8,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const { token } = useAuthContext();
-  console.log("token 1 from login::", token)
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = await login(username, password);
