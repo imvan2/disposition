@@ -15,6 +15,7 @@ export async function getTokenInternal() {
     if (response.ok) {
       const data = await response.json();
       internalToken = data.access_token;
+      console.log("internalToken from useToken.js:", internalToken);
       return internalToken;
     }
   } catch (e) {}
@@ -75,11 +76,11 @@ export function useToken() {
 
   async function logout() {
     if (token) {
-      const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/token/refresh/logout/`;
+      const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/token`;
       await fetch(url, { method: "delete", credentials: "include" });
       internalToken = null;
       setToken(null);
-      navigate("/");
+
     }
   }
 
@@ -96,7 +97,6 @@ export function useToken() {
     if (response.ok) {
       const token = await getTokenInternal();
       setToken(token);
-      console.log("token from useToken:",token)
       return token;
     }
     let error = await response.json();

@@ -1,10 +1,25 @@
 import { NavLink } from 'react-router-dom';
 // import Logo_Light from './Images/Logo_Light.png';
 // <img src={Logo_Light} width={100} height={100} />
+import { useAuthContext, AuthProvider, useToken } from './authorization/useToken';
+import { useState, useEffect } from 'react';
 
 function Nav() {
   // something here to hide login/sign up links when the user is already logged in
   // something here to show history when a user is logged in
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const { token } = useAuthContext();
+
+  const checkingToken = (token) => {
+    if ((typeof(token) == "string") === true) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  }
+
+  useEffect(() => {checkingToken(token)})
 
   return (
     <nav className="navbar navbar-dark bg-dark">
@@ -21,11 +36,15 @@ function Nav() {
             <div className="offcanvas-body bg-success p-3 mb-2 bg-dark text-white">
                 <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li><NavLink className="nav-link ms-3" to="/Vibecheck">Vibe Check</NavLink></li>
-                    <li><NavLink className="nav-link ms-3" to="/Login">Login</NavLink></li>
-                    <li><NavLink className="nav-link ms-3" to="/SignupForm">Sign-up</NavLink></li>
+                    {!loggedIn ? <li><NavLink className="nav-link ms-3" to="/Login">Login</NavLink></li>:
+                    <li><NavLink className="nav-link ms-3" to="/Logout">Logout</NavLink></li>}
+                    {!loggedIn && <li><NavLink className="nav-link ms-3" to="/SignupForm">Sign-up</NavLink></li>}
                     <li><NavLink className="nav-link ms-3" to="/Results">Results</NavLink></li>
-                    <li><NavLink className="nav-link ms-3" to="">History</NavLink></li>
+                    {loggedIn && <li><NavLink className="nav-link ms-3" to="">History</NavLink></li>}
                     <li><NavLink className="nav-link ms-3" to="/Hot-100">Hot-100</NavLink></li>
+                    {/* TEMPORARY */}
+                    <li><NavLink className="nav-link ms-3" to="/Spotify">Spotify</NavLink></li>
+                    <li><NavLink className="nav-link ms-3" to="/Spot2">Spot2</NavLink></li>
                 </ul>
             </div>
           </div>

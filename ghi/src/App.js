@@ -4,34 +4,41 @@ import Nav from "./Nav";
 import Hot from './in-progress/Hot-100';
 import SignupForm from './authorization/Signup';
 import Login from './authorization/Login';
+import Logout from './authorization/Logout';
 import Vibecheck from './services/Vibecheck'
-import { AuthProvider, useToken } from "./in-progress/auth.js";
+import { AuthProvider, useToken } from "./authorization/useToken.js";
 import ResultsPage from './Results.js';
+import Spotify from './services/spotify.js';
+import Spot2 from './services/spot2.js';
 
 function GetToken() {
     // Get token from JWT cookie (if already logged in)
     useToken();
-    return null
+    return null;
 }
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <AuthProvider>
+      <GetToken />
       <Nav />
         <div className="container">
-          <AuthProvider>
-            <GetToken />
               <Routes>
                 <Route path="/" element={<TopHits/>} />
                 <Route path="/Hot-100" element={<Hot/>} />
                 <Route path="/SignupForm" element={<SignupForm/>} />
                 <Route path="/Login" element={<Login/>} />
+                <Route path="/Logout" element={<Logout/>} />
                 <Route path="/Vibecheck" element={<Vibecheck/>} />
                 <Route path="/Results" element={<ResultsPage/>} />
+                <Route path="/Spotify" element={<Spotify/>} />
+                <Route path="/Spot2" element={<Spot2/>} />
               </Routes>
-          </AuthProvider>
+
         </div>
+        </AuthProvider>
       </BrowserRouter>
 
     </>

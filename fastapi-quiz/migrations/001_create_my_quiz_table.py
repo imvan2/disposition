@@ -5,10 +5,8 @@ steps = [
         CREATE TABLE quiz_answer (
             id SERIAL PRIMARY KEY NOT NULL,
             user_id SMALLINT NOT NULL,
-            q_number SMALLINT NOT NULL UNIQUE,
-            question VARCHAR(1000) NOT NULL,
-            answer VARCHAR(50) NOT NULL,
-            value SMALLINT NOT NULL
+            mood VARCHAR(50) NOT NULL,
+            genre SMALLINT NOT NULL
         );
         """,
         ## Drop the table

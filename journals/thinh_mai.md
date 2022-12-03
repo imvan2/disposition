@@ -1,3 +1,18 @@
+# Dec 2, 2022
+
+Today we are working on getting the results page to populate with the results get got from the personality quiz
+
+# Dec 1, 2022
+
+We were able to get the login page with user authentication to work. If login is successful, we will redirect to the results page. If not successful, will redirect to signup page
+
+# Nov 29, 2022
+
+Started on main page with adding in top 100 result, got it to work with hardcoding the result. Need to figure out a way to save the result we get from third party api into back-end.
+
+# Nov 22, 2022
+
+Finished all endpoints that we needed for now in the backend.We will start working on front end
 
 # Nov 18, 2022
 
