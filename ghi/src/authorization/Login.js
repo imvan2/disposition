@@ -3,6 +3,8 @@ import { useToken, useAuthContext, getTokenInternal } from "./useToken";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+
+
    // From developer dashboard
     const CLIENT_ID = "5a2a9a022fc549efae7b97b447d43b5c"
     // must be set in the developer dashboard (source of Under Construction Warning)
@@ -60,7 +62,11 @@ function Login() {
         <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
         : <button className="btn btn-dark" onClick={logout}>Logout</button>}
         </h2>
-      <form onSubmit={handleSubmit}>
+
+
+      {!token ?
+        <p></p> :
+        <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
             User Name
@@ -94,6 +100,41 @@ function Login() {
           <a href="http://localhost:3000/SignupForm">here</a>
         </p>
       </form>
+      }
+      {/* <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="username" className="form-label">
+            User Name
+          </label>
+          <input
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            className="form-control"
+            id="username"
+            placeholder="Username"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="shhhhhh"
+          />
+        </div>
+        <button className="btn btn-primary">Login</button>
+        <div className="success-message">
+          Welcome back! Great seeing you again. Can I get you a cup of tea?
+        </div>
+        <p>
+          Not a member yet? Sign-up{" "}
+          <a href="http://localhost:3000/SignupForm">here</a>
+        </p>
+      </form> */}
     </>
   );
 }
