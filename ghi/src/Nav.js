@@ -24,13 +24,14 @@ function Nav() {
   return (
     <nav className="navbar navbar-dark bg-dark">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/"><img height="25%" alt="Disposition logo" src='/images/Logo.png' /></NavLink>
+          <NavLink className="navbar-brand" to="/"><img height="85px" alt="Disposition logo" src={require('./images/Disp_Logo_LG_LT.png')} /></NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="offcanvas offcanvas-end text-bg-dark" data-bs-scroll="true" tabIndex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
             <div className="offcanvas-header bg-secondary text-white">
-              <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
+              <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel"><img height="50px" alt="Disposition logo" src={require('./images/Disp_Disk_LT.png')} />      Menu</h5>
+
               <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body bg-success p-3 mb-2 bg-dark text-white">
