@@ -5,21 +5,21 @@ import { useLocation } from 'react-router-dom';
 
 function Spot2() {
 
-    // From developer dashboard
-    const CLIENT_ID = "5a2a9a022fc549efae7b97b447d43b5c"
-    // must be set in the developer dashboard (source of Under Construction Warning)
-    const REDIRECT_URI = "http://localhost:3000/Spot2"
-    // authorization endpoint
-    const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
-    //requirement
-    const RESPONSE_TYPE = "token"
+    // // From developer dashboard
+    // const CLIENT_ID = "5a2a9a022fc549efae7b97b447d43b5c"
+    // // must be set in the developer dashboard (source of Under Construction Warning)
+    // const REDIRECT_URI = "http://localhost:3000/Spot2"
+    // // authorization endpoint
+    // const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
+    // //requirement
+    // const RESPONSE_TYPE = "token"
 
-    // Set and maintain state
+    // // Set and maintain state
     const [token, setToken] = useState('')
     const [playlists, setPlaylists] = useState([])
 
     const location = useLocation();
-    console.log("location:::", location)
+    // console.log("location:::", location)
 
     //used to get token from url
     useEffect(() => {
@@ -37,10 +37,10 @@ function Spot2() {
     }, [])
 
     // Erase Token from local storage (when you logout)
-    const logout = () => {
-        setToken("")
-        window.localStorage.removeItem("token")
-    }
+    // const logout = () => {
+    //     setToken("")
+    //     window.localStorage.removeItem("token")
+    // }
 
     // function to create search request to spotify
     const pullPlaylists = async (e) => {
@@ -92,9 +92,9 @@ function Spot2() {
                         <h1 className="display-4">Vibe out to:  {location.state.result}</h1>
                         {/* <p className="lead">{location.state.result}</p> */}
                     </div>
-                {!token ?
+                {/* {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
-                    : <button className="btn btn-dark" onClick={logout}>Logout</button>}
+                    : <button className="btn btn-dark" onClick={logout}>Logout</button>} */}
                 {/* {token ?
                     <form onSubmit={searchPlaylists}>
                         <input type="text" onChange={e => setSearchKey(e.target.value)} />
