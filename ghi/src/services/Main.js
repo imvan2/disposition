@@ -1,5 +1,6 @@
 //STARTS HERE
 import '../ResultsAnimation.css';
+import './Main.css'
 
   const TopHits = () => {
     const data = [{'rank': '1', 'title': 'Anti-Hero', 'artist': 'Taylor Swift', 'weeks at no.1': '4', 'last week': '1', 'peak position':'1', 'weeks on chart': '4', 'album': 'https://charts-static.billboard.com/img/2022/10/taylor-swift-824-antihero-fgo-180x180.jpg'},
@@ -24,18 +25,14 @@ import '../ResultsAnimation.css';
         <h1 className="display-5 fw-bold"></h1>
         <br></br>
         <br></br>
-        <a
-          href="/Vibecheck"
-          button="button"
-          className="animate__zoomInDown btn btn-primary btn-lg center"
-        >
+        <a href="/Vibecheck" button="button" className="animate__zoomInDown btn btn-primary btn-lg center">
           Get a Vibe Check
         </a>
         <br></br>
         <br></br>
         <br></br>
         <div className="animate__zoomInDown shadow-lg p-3 mb-5 bg-white rounded">
-          <h1>Top 100 Hits</h1>
+          <h1>BillBoard's Top 10 Hits</h1>
           <br></br>
           <table className="table table-striped">
             <thead>

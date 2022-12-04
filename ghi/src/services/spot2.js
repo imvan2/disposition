@@ -71,8 +71,10 @@ function Spot2() {
     }
 
     useEffect(() => {
-        pullPlaylists()
-    }, []);
+        if (playlists.length === 0){
+            pullPlaylists()
+        }
+    });
 
     // JSX (passing the required credentials as a link to verify spotify account)
     // if no token display a tag Login to spotify: and :Please login text
@@ -80,12 +82,19 @@ function Spot2() {
     // function to set the search parameter
     // render playlists to display html at specified location
     return (
+        <>
         <div className="App">
-            <header className="App-header">
-                <h1>Spotify Search Proof of Concept</h1>
+            <header className="">
+                <br></br>
+                <br></br>
+                <div className="jumbotron jumbotron-fluid" className="p-3 mb-2 bg-dark text-white">
+                    <div className="container"></div>
+                        <h1 className="display-4">Vibe out to:  {location.state.result}</h1>
+                        {/* <p className="lead">{location.state.result}</p> */}
+                    </div>
                 {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
-                    : <button onClick={logout}>Logout</button>}
+                    : <button className="btn btn-dark" onClick={logout}>Logout</button>}
                 {/* {token ?
                     <form onSubmit={searchPlaylists}>
                         <input type="text" onChange={e => setSearchKey(e.target.value)} />
@@ -93,9 +102,29 @@ function Spot2() {
                     </form>
                     : <h2>Please login</h2>
                 } */}
-                {renderPlaylists()}
             </header>
+            <br></br>
+            <br></br>
+            <body>
+                {/* <div class="card-deck">
+                        {renderPlaylists()}
+                </div> */}
+                    {/* <p>{location.state.result}</p> */}
+                    <table className="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
+                        <thead>
+                            <tr>
+                                <th>Playlist Name</th>
+                                <th>Image</th>
+                                <th>Track Href</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {renderPlaylists()}
+                        </tbody>
+                    </table>
+            </body>
         </div >
+        </>
     );
 }
 export default Spot2;

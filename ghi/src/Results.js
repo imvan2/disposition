@@ -11,7 +11,7 @@ const ResultsPage = () => {
     }
     return (
         <>
-            <h1 className="animate__zoomInDown mt-5 h-100 d-flex align-items-center justify-content-center" id="text">Your Customized Playlist</h1>
+            <h1 className="animate__fadeIn mt-5 h-100 d-flex align-items-center justify-content-center" id="text">Your Customized Playlist</h1>
             <div className="animate__fadeIn mt-3 center">
                 <div className="card mb-3" style={{"width": "900px"}} id="div1">
                     <div className="row g-0">
