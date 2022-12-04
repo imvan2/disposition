@@ -19,13 +19,13 @@ import './Main.css'
       <div className="col-xs-12 center-block text-center align-items-center justify-content-center"></div>
       <h1 className="animate__lightSpeedInRight display-5 fw-bold"></h1>
       <div className="col-lg-6 mx-auto">
-        <p className="display-5 animate__zoomInDown mt-5 h-100 d-flex  align-items-center justify-content-center">
+        <p className="display-5 animate__zoomInDown mt-5 h-100 d-flex  align-items-center justify-content-center ">
           The premiere solution for finding music that fits your vibe!
         </p>
         <h1 className="display-5 fw-bold"></h1>
         <br></br>
         <br></br>
-        <a href="/Vibecheck" button="button" className="animate__zoomInDown btn btn-primary btn-lg center">
+        <a href="/Vibecheck" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
           Get a Vibe Check
         </a>
         <br></br>
