@@ -167,10 +167,10 @@ const Vibecheck = () =>{
     <form onSubmit={handleSubmit}>
 
       <div className="shadow-lg p-3 mb-5 bg-white rounded">
-      <label className='form-labels'>What's your favorite beverage?</label>
+      <label htmlFor="validationServer01" className='form-labels'>What's your favorite beverage?</label>
 
         <div className="form-check form-check-inline ms-2"   onClick={water}>
-          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="water"/>
+          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="water" required/>
           <label className="form-check-label" htmlFor="inlineRadio1">Water💦</label>
         </div>
         <div className="form-check form-check-inline" onClick={coffee}>
