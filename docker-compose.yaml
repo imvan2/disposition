@@ -2,6 +2,8 @@
 volumes:
     postgres-data:
         external: true
+    # pg-admin:  DONT NEED?
+    #     external: true DONT NEED?
     # other volumes...
 
 services:
