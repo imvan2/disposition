@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+// import { useState } from "react";
 import 'animate.css';
 import './ResultsAnimation.css';
 
 const ResultsPage = () => {
-    const [good, setGood] = useState("");
-    const [bad, setBad] = useState("");
+    // const [good, setGood] = useState("");
+    // const [bad, setBad] = useState("");
 
     const handleClick = () => {
-        setGood("good");
+        // setGood("good");
     }
     return (
         <>

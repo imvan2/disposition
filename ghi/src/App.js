@@ -8,7 +8,6 @@ import Logout from './authorization/Logout';
 import Vibecheck from './services/Vibecheck'
 import { AuthProvider, useToken } from "./authorization/useToken.js";
 import ResultsPage from './Results.js';
-import Spotify from './services/spotify.js';
 import Spot2 from './services/spot2.js';
 
 function GetToken() {
@@ -33,7 +32,6 @@ function App() {
                 <Route path="/Logout" element={<Logout/>} />
                 <Route path="/Vibecheck" element={<Vibecheck/>} />
                 <Route path="/Results" element={<ResultsPage/>} />
-                <Route path="/Spotify" element={<Spotify/>} />
                 <Route path="/Spot2" element={<Spot2/>} />
               </Routes>
 

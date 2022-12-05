@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 // import Logo_Light from './Images/Logo_Light.png';
 // <img src={Logo_Light} width={100} height={100} />
-import { useAuthContext, AuthProvider, useToken } from './authorization/useToken';
+import { useAuthContext } from './authorization/useToken';
 import { useState, useEffect } from 'react';
 
 function Nav() {
@@ -44,7 +44,6 @@ function Nav() {
                     {loggedIn && <li><NavLink className="nav-link ms-3" to="">History</NavLink></li>}
                     <li><NavLink className="nav-link ms-3" to="/Hot-100">Hot-100</NavLink></li>
                     {/* TEMPORARY */}
-                    <li><NavLink className="nav-link ms-3" to="/Spotify">Spotify</NavLink></li>
                     <li><NavLink className="nav-link ms-3" to="/Spot2">Spot2</NavLink></li>
                 </ul>
             </div>

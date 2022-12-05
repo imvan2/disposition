@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
+// import { useNavigate } from "react-router-dom";
 let internalToken = null;
 
 export function getToken() {
@@ -22,26 +23,26 @@ export async function getTokenInternal() {
   return false;
 }
 
-function handleErrorMessage(error) {
-  if ("error" in error) {
-    error = error.error;
-    try {
-      error = JSON.parse(error);
-      if ("__all__" in error) {
-        error = error.__all__;
-      }
-    } catch {}
-  }
-  if (Array.isArray(error)) {
-    error = error.join("<br>");
-  } else if (typeof error === "object") {
-    error = Object.entries(error).reduce(
-      (acc, x) => `${acc}<br>${x[0]}: ${x[1]}`,
-      ""
-    );
-  }
-  return error;
-}
+// function handleErrorMessage(error) {
+//   if ("error" in error) {
+//     error = error.error;
+//     try {
+//       error = JSON.parse(error);
+//       if ("__all__" in error) {
+//         error = error.__all__;
+//       }
+//     } catch {}
+//   }
+//   if (Array.isArray(error)) {
+//     error = error.join("<br>");
+//   } else if (typeof error === "object") {
+//     error = Object.entries(error).reduce(
+//       (acc, x) => `${acc}<br>${x[0]}: ${x[1]}`,
+//       ""
+//     );
+//   }
+//   return error;
+// }
 
 export const AuthContext = createContext({
   token: null,
@@ -62,7 +63,7 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export function useToken() {
   const { token, setToken } = useAuthContext();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchToken() {
@@ -99,7 +100,7 @@ export function useToken() {
       setToken(token);
       return token;
     }
-    let error = await response.json();
+    // let error = await response.json();
     return null;
   }
 

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-
+import { useState } from 'react'
+// import { useEffect} from 'react'
 const SignupForm = () =>{
   const [submitted, setSubmitted] =useState(false);
   const [email, setEmail] = useState("");
@@ -24,7 +24,7 @@ const SignupForm = () =>{
         const response = await fetch(signupUrl, fetchConfig)
         console.log("response::", response)
         if (response.ok) {
-          const newUser = await response.json();
+        //   const newUser = await response.json();
           setEmail("");
           setUsername("");
           setPassword("");

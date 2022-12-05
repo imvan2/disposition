@@ -87,7 +87,7 @@ function Spot2() {
             <header className="">
                 <br></br>
                 <br></br>
-                <div className="jumbotron jumbotron-fluid" className="p-3 mb-2 bg-dark text-white">
+                <div className="jumbotron jumbotron-fluid p-3 mb-2 bg-dark text-white">
                     <div className="container"></div>
                         <h1 className="display-4">Vibe out to:  {location.state.result}</h1>
                         {/* <p className="lead">{location.state.result}</p> */}

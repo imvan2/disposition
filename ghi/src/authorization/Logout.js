@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useToken, useAuthContext} from "./useToken";
+// import { useEffect, useState } from "react";
+import { useToken } from "./useToken";
 import { useNavigate } from "react-router-dom";
 
 function Logout() {
@@ -8,7 +8,7 @@ function Logout() {
     // console.log("login::", login)
 
     const navigate = useNavigate();
-    const { token } = useAuthContext();
+    // const { token } = useAuthContext();
 
 
     const handleSubmit = async (e) => {
