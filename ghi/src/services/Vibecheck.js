@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+// import { useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
 
 
@@ -140,10 +141,10 @@ const Vibecheck = () =>{
   };
 
  // sixth question answers
-  const genre = async (e) => {
-    e.preventDefault()
-    setGenre(e.target.value)
-  }
+  // const genre = async (e) => {
+  //   e.preventDefault()
+  //   setGenre(e.target.value)
+  // }
 
 
   const dontClickBtn = (e) => {
@@ -156,7 +157,7 @@ const Vibecheck = () =>{
     <>
     <br></br>
     <br></br>
-    <div className="jumbotron jumbotron-fluid" className="p-3 mb-2 bg-dark text-white">
+    <div className="jumbotron jumbotron-fluid p-3 mb-2 bg-dark text-white">
       <div className="container"></div>
         <h1 className="display-4">Vibe Check</h1>
         <p className="lead">Using advance AI technology, a personalized playlist will be delivered from the ether, straight to your tympanic membrane</p>
