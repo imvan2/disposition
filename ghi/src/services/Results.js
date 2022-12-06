@@ -3,7 +3,7 @@ import './App.css';
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
 
-function Spot2() {
+function Results() {
 
     // // From developer dashboard
     // const CLIENT_ID = "5a2a9a022fc549efae7b97b447d43b5c"
@@ -15,7 +15,7 @@ function Spot2() {
     // const RESPONSE_TYPE = "token"
 
     // // Set and maintain state
-    const [token, setToken] = useState('')
+    const [spotToken, setSpotToken] = useState('')
     const [playlists, setPlaylists] = useState([])
 
     const location = useLocation();
@@ -24,16 +24,16 @@ function Spot2() {
     //used to get token from url
     useEffect(() => {
         const hash = window.location.hash
-        let token = window.localStorage.getItem("token")
+        let spotToken = window.localStorage.getItem("token")
         // how to get token from url (when we have a hashtag and no token)
-        if (!token && hash) {
-            token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
+        if (!spotToken && hash) {
+            spotToken = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
             // set hash token to an empty string
             window.location.hash = ""
             // save token to local storage
-            window.localStorage.setItem("token", token)
+            window.localStorage.setItem("token", spotToken)
         }
-        setToken(token)
+        setSpotToken(spotToken)
     }, [])
 
     // Erase Token from local storage (when you logout)
@@ -46,14 +46,13 @@ function Spot2() {
     const pullPlaylists = async (e) => {
         const { data } = await axios.get("https://api.spotify.com/v1/search", {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${spotToken}`
             },
             params: {
                 q: location.state.result,
                 type: "playlist"
             }
         })
-        console.log("DATA HERE", data);
         // set data.playlists.items to playlists state
         setPlaylists(data.playlists.items)
     }
@@ -127,4 +126,4 @@ function Spot2() {
         </>
     );
 }
-export default Spot2;
+export default Results;

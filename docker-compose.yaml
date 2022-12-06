@@ -7,14 +7,6 @@ volumes:
     # other volumes...
 
 services:
-  fastapi:
-    build:
-      context: sample_service
-      dockerfile: Dockerfile.dev
-    ports:
-      - 8000:8000
-    volumes:
-      - ./sample_service:/app
   fastapi-accounts:
     build:
         context: ./fastapi-accounts
@@ -76,4 +68,7 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8001
+      # REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8001
+      REACT_APP_ACCOUNTS_API_HOST: http://localhost:8001
+      REACT_APP_PLAYLIST_API_HOST: http://localhost:8003
+      REACT_APP_QUIZ_API_HOST: http://localhost:8002

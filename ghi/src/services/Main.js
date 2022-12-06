@@ -1,6 +1,9 @@
 //STARTS HERE
 import '../ResultsAnimation.css';
-import './Main.css'
+import './Main.css';
+import { useAuthContext } from '../authorization/useToken';
+import { useState, useEffect } from 'react';
+
 
   const TopHits = () => {
     const data = [{'rank': '1', 'title': 'Anti-Hero', 'artist': 'Taylor Swift', 'weeks at no.1': '4', 'last week': '1', 'peak position':'1', 'weeks on chart': '4', 'album': 'https://charts-static.billboard.com/img/2022/10/taylor-swift-824-antihero-fgo-180x180.jpg'},
@@ -13,6 +16,24 @@ import './Main.css'
                   {'rank': '8', 'title': 'Lift Me Up', 'artist': 'Rihanna', 'last week': '22', 'peak position': '2', 'weeks on chart': '3', 'album': 'https://upload.wikimedia.org/wikipedia/en/4/43/Rihanna_-_Lift_Me_Up.png'},
                   {'rank': '9', 'title': 'Spin Bout U', 'artist': 'Drake & 21 Savage', 'last week': '5', 'peak position': '5', 'weeks on chart': '2', 'album': 'https://charts-static.billboard.com/img/2009/04/drake-04g-180x180.jpg'},
                   {'rank': '10', 'title': 'On BS', 'artist': 'Drake & 21 Savage', 'last week': '4', 'peak position': '4', 'weeks on chart': '2', 'album': 'https://charts-static.billboard.com/img/2009/04/drake-04g-180x180.jpg'}]
+
+    const { token } = useAuthContext();
+    const [loggedInBoth, setLoggedInBoth] = useState(false);
+
+    const spotToken = window.localStorage.getItem("token");
+    console.log("spotToken:::", spotToken);
+    console.log("token::::", token);
+
+    const checkingToken = (token, spotToken) => {
+      if ((typeof(token) == "string") === true && (typeof(spotToken) == "string") === true) {
+        setLoggedInBoth(true);
+      } else {
+        setLoggedInBoth(false);
+      }
+    }
+
+    useEffect(() => {checkingToken(token, spotToken)});
+
 
   return (
     <>
@@ -29,9 +50,15 @@ import './Main.css'
           {/* <h1 className="display-5 fw-bold"></h1> */}
           <br></br>
           <br></br>
+          {/* {if (token && )}
           <a href="/Login" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
             Get a Vibe Check
-          </a>
+          </a> */}
+          {!loggedInBoth ? <a href="/Login" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
+            Get a Vibe Check
+          </a>: <a href="/VibeCheck" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
+            Get a Vibe Check
+          </a>}
           <br></br>
           <br></br>
           <br></br>
