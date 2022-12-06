@@ -1,5 +1,6 @@
 import { useState } from 'react'
-// import { useEffect} from 'react'
+import { useNavigate } from "react-router-dom";
+
 const SignupForm = () =>{
   const [submitted, setSubmitted] =useState(false);
   const [email, setEmail] = useState("");
@@ -7,6 +8,7 @@ const SignupForm = () =>{
   const [password, setPassword] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async(event) =>{
         event.preventDefault();
@@ -20,9 +22,9 @@ const SignupForm = () =>{
                 "Content-Type": "application/json",
             }
         }
-        console.log("FETCH:::", fetchConfig)
+
         const response = await fetch(signupUrl, fetchConfig)
-        console.log("response::", response)
+
         if (response.ok) {
         //   const newUser = await response.json();
           setEmail("");
@@ -32,6 +34,7 @@ const SignupForm = () =>{
           setLastName("");
           setSubmitted(true);
         }
+        navigate("/Login");
   }
 
 

@@ -7,8 +7,7 @@ import Login from './authorization/Login';
 import Logout from './authorization/Logout';
 import Vibecheck from './services/Vibecheck'
 import { AuthProvider, useToken } from "./authorization/useToken.js";
-import ResultsPage from './Results.js';
-import Spot2 from './services/spot2.js';
+import Results from './services/Results.js';
 
 function GetToken() {
     // Get token from JWT cookie (if already logged in)
@@ -17,6 +16,7 @@ function GetToken() {
 }
 
 function App() {
+
   return (
     <>
       <BrowserRouter>
@@ -31,8 +31,7 @@ function App() {
                 <Route path="/Login" element={<Login/>} />
                 <Route path="/Logout" element={<Logout/>} />
                 <Route path="/Vibecheck" element={<Vibecheck/>} />
-                <Route path="/Results" element={<ResultsPage/>} />
-                <Route path="/Spot2" element={<Spot2/>} />
+                <Route path="/Results" element={<Results/>} />
               </Routes>
 
         </div>

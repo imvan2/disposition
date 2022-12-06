@@ -43,8 +43,6 @@ function Nav() {
                     <li><NavLink className="nav-link ms-3" to="/Results">Results</NavLink></li>
                     {loggedIn && <li><NavLink className="nav-link ms-3" to="">History</NavLink></li>}
                     <li><NavLink className="nav-link ms-3" to="/Hot-100">Hot-100</NavLink></li>
-                    {/* TEMPORARY */}
-                    <li><NavLink className="nav-link ms-3" to="/Spot2">Spot2</NavLink></li>
                 </ul>
             </div>
           </div>

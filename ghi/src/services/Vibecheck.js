@@ -1,6 +1,7 @@
 import { useState } from 'react'
 // import { useEffect} from 'react'
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
+
 
 
 const Vibecheck = () =>{
@@ -18,6 +19,11 @@ const Vibecheck = () =>{
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const username = location.state.username;
+  // console.log("username.state:::", username.state.username);
+  
+
 
   function SubmitButton(){
     if (firstQ && secondQ && thirdQ  && fourthQ  && fifthQ  && sixthQ){
@@ -33,7 +39,6 @@ const Vibecheck = () =>{
         event.preventDefault();
         const total = Math.floor((firstQ + secondQ + thirdQ + fourthQ + fifthQ)/5);
         const genreStr = sixthQ
-        console.log(total);
         let disposition = "";
         if (total === 1) {
           disposition = "gloomy";
@@ -50,13 +55,57 @@ const Vibecheck = () =>{
         const mood = disposition + " " + genreStr
         setSubmitted(true);
 
+        
+        // GET request for username
+        const accountUrl = `http://localhost:8001/accounts/${username}`;
+        const fetchConfig = {
+            method :"GET",
+            headers : {
+                "Content-Type": "application/json",
+            }
+        }
+        const response = await fetch(accountUrl, fetchConfig)
+        if (response.ok) {
+          const user = await response.json();
+          // const user_id = user
+          console.log("user::::", user);
+        }
+
+        // what else can localstorage show? maybe pass the username as props when they sign up/login?
+        // DID IT WORK? check slack for the pic
+        
+        // send a post request to backend with this info
+        // START
+  //       const data = {user_id, mood, genre};
+
+  //       const answersUrl = "http://localhost:8002/answers";
+  //       const fetchConfig = {
+  //           method :"POST",
+  //           body: JSON.stringify(data),
+  //           headers : {
+  //               "Content-Type": "application/json",
+  //           }
+  //       }
+  //       console.log("FETCH:::", fetchConfig)
+  //       const response = await fetch(answersUrl, fetchConfig)
+  //       console.log("response::", response)
+  //       if (response.ok) {
+  //       //   const newUser = await response.json();
+  //         setUser_id("");
+  //         setMood("");
+  //         setGenre("");
+  //       }
+  //       navigate("/Login");
+
+
+
+        // END
         // if user authenticated
         // navigate to results page
 
         // if user NOT authenticated
         // navigate to login/signup
-        navigate('/Spot2', {state: {result: mood}})
-        console.log(mood);
+        navigate('/Results', {state: {result: mood}})
 
         // save genre+outcome
         // const data = {}
@@ -160,7 +209,7 @@ const Vibecheck = () =>{
     <div className="jumbotron jumbotron-fluid p-3 mb-2 bg-dark text-white">
       <div className="container"></div>
         <h1 className="display-4">Vibe Check</h1>
-        <p className="lead">Using advance AI technology, a personalized playlist will be delivered from the ether, straight to your tympanic membrane</p>
+        <p className="lead">Using advanced AI technology, a personalized playlist will be delivered from the ether, straight to your tympanic membrane</p>
       </div>
     {/* </div> */}
     <br></br>
