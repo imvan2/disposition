@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react';
                   {'rank': '9', 'title': 'Spin Bout U', 'artist': 'Drake & 21 Savage', 'last week': '5', 'peak position': '5', 'weeks on chart': '2', 'album': 'https://charts-static.billboard.com/img/2009/04/drake-04g-180x180.jpg'},
                   {'rank': '10', 'title': 'On BS', 'artist': 'Drake & 21 Savage', 'last week': '4', 'peak position': '4', 'weeks on chart': '2', 'album': 'https://charts-static.billboard.com/img/2009/04/drake-04g-180x180.jpg'}]
 
+    // checking if the user is logged in with our app and/or spotify
     const { token } = useAuthContext();
     const [loggedInBoth, setLoggedInBoth] = useState(false);
 
@@ -30,10 +31,19 @@ import { useState, useEffect } from 'react';
       } else {
         setLoggedInBoth(false);
       }
-    }
+    };
 
     useEffect(() => {checkingToken(token, spotToken)});
 
+    // generating the top 100 songs
+    // const generateBillboard = () => {
+    //   // a fetch call here to a billboard
+
+    //   // save the billboard to backend
+
+    // };
+
+    // useEffect(() => {generateBillboard}, []);
 
   return (
     <>

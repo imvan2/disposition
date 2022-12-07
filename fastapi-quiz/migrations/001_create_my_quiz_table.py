@@ -6,7 +6,7 @@ steps = [
             id SERIAL PRIMARY KEY NOT NULL,
             user_id SMALLINT NOT NULL,
             mood VARCHAR(50) NOT NULL,
-            genre SMALLINT NOT NULL
+            genre VARCHAR(50) NOT NULL
         );
         """,
         ## Drop the table

@@ -8,13 +8,13 @@ class Error(BaseModel):
 class AnswerIn(BaseModel):
     user_id: int
     mood: str
-    genre: int
+    genre: str
 
 class AnswerOut(BaseModel):
     id: int
     user_id: int
     mood: str
-    genre: int
+    genre: str
 
 class AnswerRepo:
     def create(self, answer: AnswerIn) -> AnswerOut:
@@ -27,7 +27,7 @@ class AnswerRepo:
                         mood,
                         genre)
                     VALUES
-                        (%s, %s, %s, %s, %s)
+                        (%s, %s, %s)
                     RETURNING id;
                     """,
                     [answer.user_id,
@@ -47,13 +47,16 @@ class AnswerRepo:
               SELECT
                     user_id,
                     mood,
-                    genre
+                    genre,
+                    id
               FROM quiz_answer
               ORDER BY id;
               """
             )
             result = []
+            print("db:::", db)
             for record in db:
+              print("record::",record)
               answer = AnswerOut(
                 user_id = record[0],
                 mood = record[1],
