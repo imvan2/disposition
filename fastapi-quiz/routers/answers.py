@@ -1,8 +1,9 @@
+import os
 from fastapi import APIRouter, Depends, Response, Request, HTTPException, status
 from queries.answers import AnswerIn, AnswerOut, AnswerRepo, Error
 from typing import List, Optional, Union
 from token_auth import get_current_user
-
+print (os.getcwd())
 
 router = APIRouter()
 
