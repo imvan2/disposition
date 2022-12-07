@@ -13,6 +13,7 @@ COPY queries queries
 COPY routers routers
 COPY auth auth
 COPY *.py /app/
+COPY auth auth
 
 # If you're using a relational database with migrations,
 # uncomment the following line
