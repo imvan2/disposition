@@ -49,7 +49,7 @@ import { useState, useEffect } from 'react';
     <>
     <header>
     </header>
-    <body>
+    {/* <body> */}
       <div>
         <div className="col-xs-12 center-block text-center align-items-center justify-content-center">
         {/* <h1 className="animate__lightSpeedInRight display-5 fw-bold"></h1> */}
@@ -106,7 +106,7 @@ import { useState, useEffect } from 'react';
         </div>
       </div>
     </div>
-    </body>
+    {/* </body> */}
     </>
   );
 }

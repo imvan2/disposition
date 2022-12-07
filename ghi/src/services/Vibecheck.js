@@ -70,15 +70,18 @@ const Vibecheck = () => {
       if (accountResponse.ok) {
         const user = await accountResponse.json();
         if (user === null) {
-          setUserID(1);
-        } else {setUserID(user.id);}
+          setUserID(0);
+        } else {
+          setUserID(user.id);
+        }
       }
     } catch {
       console.log("please login");
+      setUserID(0);
     }
 
     // making a post request to save the answers to backend
-    const data = { "user_id": userID, "mood": disposition, "genre": genreStr };
+    const data = { user_id: userID, mood: disposition, genre: genreStr };
     const answersUrl = "http://localhost:8002/answers";
     const fetchConfig = {
       method: "POST",
@@ -87,11 +90,12 @@ const Vibecheck = () => {
         "Content-Type": "application/json",
       },
     };
+
     const response = await fetch(answersUrl, fetchConfig);
+
     if (response.ok) {
       const newData = await response.json();
       console.log(newData);
-
     }
     // END
     // if user authenticated
