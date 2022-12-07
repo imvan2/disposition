@@ -4,7 +4,7 @@ import { useToken} from "./useToken";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  
+
    // From developer dashboard
     const CLIENT_ID = "5a2a9a022fc549efae7b97b447d43b5c"
     // must be set in the developer dashboard (source of Under Construction Warning)
@@ -48,7 +48,7 @@ function Login() {
     const name = await login(username, password);
 
     if (name !== null) {
-      navigate("/Vibecheck", {state: {username: username}});
+      navigate("/Vibecheck");
     } else {
       navigate("/SignupForm");
     }

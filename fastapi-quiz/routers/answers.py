@@ -17,7 +17,6 @@ not_authorized = HTTPException(
 @router.get("/answers", response_model=Union[List[AnswerOut], Error])
 def get_all(
     repo: AnswerRepo = Depends(),
-    account: dict = Depends(get_current_user),
 ):
     return repo.get_all()
 
@@ -26,7 +25,6 @@ def get_all(
 def create_answer(
     answer:AnswerIn,
     repo: AnswerRepo = Depends(),
-    account: dict = Depends(get_current_user),
     ):
     return repo.create(answer)
 
