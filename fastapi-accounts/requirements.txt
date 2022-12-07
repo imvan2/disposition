@@ -8,3 +8,5 @@ psycopg[binary,pool]==3.1.4
 jwtdown-fastapi
 django-cors-headers==3.11.0
 pytest
+psycopg_pool
+psycopg

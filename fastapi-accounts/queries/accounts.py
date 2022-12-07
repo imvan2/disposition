@@ -1,6 +1,15 @@
 from pydantic import BaseModel
 from typing import List, Optional, Union
-from queries.pool import pool
+# from queries.pool import pool
+from psycopg import connect
+import os
+
+keepalive_kwargs = {
+   "keepalives": 1,
+   "keepalives_idle": 60,
+   "keepalives_interval": 10,
+   "keepalives_count": 5
+  }
 
 class Error(BaseModel):
     message:str
@@ -34,11 +43,13 @@ class Account(BaseModel):
 class AccountRepository:
     def create(self, account: AccountIn, hashed_password: str) -> Account:
         # create a pool of connections to connect the database (hello is someone there)
-        with pool.connection() as conn:
+        # with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
 
             # get a cursor(something to run SQL with), someone picks up the phone
             # with lets us not use try blocks
             with conn.cursor() as db:
+
                 # run our insert statement, give them an order after
 
                 result = db.execute(
@@ -63,7 +74,8 @@ class AccountRepository:
 
     def get_all(self) -> Union[List[AccountOut], Error]:
       try:
-        with pool.connection() as conn:
+        # with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
           with conn.cursor() as db:
             db.execute(
               """
@@ -89,7 +101,8 @@ class AccountRepository:
 
     def delete(self, id: int) -> bool:
       try:
-        with pool.connection() as conn:
+        # with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
           with conn.cursor() as db:
             db.execute(
               """
@@ -105,7 +118,8 @@ class AccountRepository:
 
     def get_one(self, username: str) -> Optional[Account]:
       try:
-        with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
+        # with pool.connection() as conn:
           with conn.cursor() as db:
             result = db.execute(
               """
@@ -138,7 +152,8 @@ class AccountRepository:
 
     def update(self, id:int, account: AccountIn) -> Union[AccountOut, Error]:
       try:
-        with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
+        # with pool.connection() as conn:
           with conn.cursor() as db:
             db.execute(
               """
