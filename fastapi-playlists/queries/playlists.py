@@ -1,6 +1,15 @@
 from pydantic import BaseModel
 from typing import Optional, List, Union
-from queries.pool import pool
+# from queries.pool import pool
+from psycopg import connect
+import os
+
+keepalive_kwargs = {
+   "keepalives": 1,
+   "keepalives_idle": 60,
+   "keepalives_interval": 10,
+   "keepalives_count": 5
+  }
 
 class Error(BaseModel):
     message:str
@@ -26,7 +35,7 @@ class PlaylistOut(BaseModel):
 
 class PlaylistRepo:
     def create(self, playlist: PlaylistIn) -> PlaylistOut:
-        with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -57,7 +66,7 @@ class PlaylistRepo:
 
     def delete(self, playlist_id: str) -> bool:
         try:
-            with pool.connection() as conn:
+            with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
@@ -73,7 +82,7 @@ class PlaylistRepo:
 
     def update(self, id: int, playlist: PlaylistIn) -> Union[PlaylistOut, Error]:
         try:
-            with pool.connection() as conn:
+            with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
@@ -106,7 +115,7 @@ class PlaylistRepo:
 
     def get_all(self) -> Union[List[PlaylistOut],Error]:
             try:
-                with pool.connection() as conn:
+                with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                     with conn.cursor() as db:
                         db.execute(
                             """
@@ -144,7 +153,7 @@ class PlaylistRepo:
 
     def get_one(self, playlist_id: str) -> Optional[PlaylistOut]:
         try:
-            with pool.connection() as conn:
+            with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """

@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from typing import Optional, List, Union
 from queries.pool import pool
+from psycopg import connect
+import os
 
 class Error(BaseModel):
     message:str
@@ -30,9 +32,16 @@ class QuestionOut(BaseModel):
     value4: int
     id: int
 
+keepalive_kwargs = {
+   "keepalives": 1,
+   "keepalives_idle": 60,
+   "keepalives_interval": 10,
+   "keepalives_count": 5
+  }
+
 class QuestionRepo:
     def create(self, question: QuestionIn) -> QuestionOut:
-        with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -68,7 +77,7 @@ class QuestionRepo:
 
     def get_one(self, q_number: int) -> Optional[QuestionOut]:
         try:
-            with pool.connection() as conn:
+            with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
@@ -109,7 +118,7 @@ class QuestionRepo:
 
     def get_all(self) -> Union[List[QuestionOut], Error]:
       try:
-        with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
           with conn.cursor() as db:
             db.execute(
               """
@@ -153,7 +162,7 @@ class QuestionRepo:
     def delete(self, q_number: int) -> bool:
             try:
                 # connect the database
-                with pool.connection() as conn:
+                with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                     # get a cursor (something to run SQL with)
                     with conn.cursor() as db:
                         db.execute(
@@ -170,7 +179,7 @@ class QuestionRepo:
 
     def update(self, id: int, question: QuestionIn) -> Union[QuestionOut, Error]:
             try:
-                with pool.connection() as conn:
+                with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                     with conn.cursor() as db:
                         db.execute(
                             """

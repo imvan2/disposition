@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from typing import Optional, List, Union
 from queries.pool import pool
+from psycopg import connect
+import os
 
 class Error(BaseModel):
     message:str
@@ -16,9 +18,16 @@ class AnswerOut(BaseModel):
     mood: str
     genre: str
 
+keepalive_kwargs = {
+   "keepalives": 1,
+   "keepalives_idle": 60,
+   "keepalives_interval": 10,
+   "keepalives_count": 5
+  }
+
 class AnswerRepo:
     def create(self, answer: AnswerIn) -> AnswerOut:
-        with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -40,7 +49,7 @@ class AnswerRepo:
 
     def get_all(self) -> Union[List[AnswerOut], Error]:
       try:
-        with pool.connection() as conn:
+        with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
           with conn.cursor() as db:
             db.execute(
               """
@@ -71,7 +80,7 @@ class AnswerRepo:
 
     def get_one(self, id: int) -> Optional[AnswerOut]:
         try:
-            with pool.connection() as conn:
+            with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
@@ -101,7 +110,7 @@ class AnswerRepo:
 
     def delete(self, id: int) -> bool:
         try:
-            with pool.connection() as conn:
+            with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
@@ -117,7 +126,7 @@ class AnswerRepo:
 
     def update(self, id: int, answer: AnswerIn) -> Union[AnswerOut, Error]:
         try:
-            with pool.connection() as conn:
+            with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs)  as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
