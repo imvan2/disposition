@@ -10,3 +10,6 @@ django-cors-headers==3.11.0
 pytest
 psycopg_pool
 psycopg
+httpx
+requests
+black
