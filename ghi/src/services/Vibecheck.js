@@ -103,7 +103,7 @@ const Vibecheck = () => {
 
     // if user NOT authenticated
     // navigate to login/signup
-    navigate("/Results", { state: { result: mood } });
+    navigate("/disposition/Results", { state: { result: mood } });
 
     // save genre+outcome
     // const data = {}

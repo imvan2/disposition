@@ -64,9 +64,9 @@ const TopHits = () => {
           <a href="/Login" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
             Get a Vibe Check
           </a> */}
-            {!loggedInBoth ? <a href="/Login" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
+            {!loggedInBoth ? <a href="/disposition/Login" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
               Get a Vibe Check
-            </a> : <a href="/VibeCheck" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
+            </a> : <a href="/disposition/VibeCheck" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
               Get a Vibe Check
             </a>}
             <br></br>
