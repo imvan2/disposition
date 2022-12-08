@@ -11,32 +11,32 @@ import Results from './services/Results.js';
 import History from './services/History'
 
 function GetToken() {
-    // Get token from JWT cookie (if already logged in)
-    useToken();
-    return null;
+  // Get token from JWT cookie (if already logged in)
+  useToken();
+  return null;
 }
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
-      <AuthProvider>
-      <GetToken />
-      <Nav />
-        <div className="container">
-              <Routes>
-                <Route path="/" element={<TopHits/>} />
-                <Route path="/Hot-100" element={<Hot/>} />
-                <Route path="/SignupForm" element={<SignupForm/>} />
-                <Route path="/Login" element={<Login/>} />
-                <Route path="/Logout" element={<Logout/>} />
-                <Route path="/Vibecheck" element={<Vibecheck/>} />
-                <Route path="/Results" element={<Results/>} />
-                <Route path="/History" element={<History/>} />
-              </Routes>
+      <BrowserRouter basename="/disposition">
+        <AuthProvider>
+          <GetToken />
+          <Nav />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<TopHits />} />
+              <Route path="/Hot-100" element={<Hot />} />
+              <Route path="/SignupForm" element={<SignupForm />} />
+              <Route path="/Login" element={<Login />} />
+              <Route path="/Logout" element={<Logout />} />
+              <Route path="/Vibecheck" element={<Vibecheck />} />
+              <Route path="/Results" element={<Results />} />
+              <Route path="/History" element={<History />} />
+            </Routes>
 
-        </div>
+          </div>
         </AuthProvider>
       </BrowserRouter>
 
