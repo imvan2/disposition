@@ -8,8 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins = [
-    os.environ.get("CORS_HOST", "http://localhost"),
-    "http://localhost:3000",
+    os.environ.get("CORS_HOST", None),
+    "http://localhost:3000", "https://moodz3.gitlab.io"
 ]
 
 app.add_middleware(
