@@ -9,3 +9,6 @@ jwtdown-fastapi
 pytest
 psycopg_pool
 psycopg
+httpx
+requests
+black
