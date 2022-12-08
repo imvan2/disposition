@@ -19,8 +19,8 @@ function Logout() {
 
     return (
         <>
-        <h1>Are you sure you want to logout?</h1>
-        <button onClick={handleSubmit}>Ok fine!</button>
+            <h1>Are you sure you want to logout?</h1>
+            <button onClick={handleSubmit}>Ok fine!</button>
         </>
     )
 }

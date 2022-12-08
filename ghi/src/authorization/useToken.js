@@ -18,7 +18,7 @@ export async function getTokenInternal() {
       internalToken = data.access_token;
       return internalToken;
     }
-  } catch (e) {}
+  } catch (e) { }
   return false;
 }
 

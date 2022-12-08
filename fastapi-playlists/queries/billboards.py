@@ -48,9 +48,6 @@
 #     #             return BillboardOut(id=id, **old_data)
 
 
-
-
-
 #     def get_all(self) -> Union[List[BillboardOut],Error]:
 #             try:
 #                 with pool.connection() as conn:

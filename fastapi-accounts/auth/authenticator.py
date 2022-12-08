@@ -3,7 +3,8 @@ import os
 from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
 from queries.accounts import AccountRepository, AccountOut, Account
-#Changed name from AccountRepo to AccountRepository
+
+# Changed name from AccountRepo to AccountRepository
 
 
 class MyAuthenticator(Authenticator):
@@ -14,7 +15,9 @@ class MyAuthenticator(Authenticator):
     ):
         # Use your repo to get the account based on the
         # username (which could be an email)
-        return accounts.get_one(username) #changed get to get_one because the function to get an account is get_one
+        return accounts.get_one(
+            username
+        )  # changed get to get_one because the function to get an account is get_one
 
     def get_account_getter(
         self,
@@ -32,6 +35,7 @@ class MyAuthenticator(Authenticator):
         # Return the username and the data for the cookie.
         # You must return TWO values from this method.
         return account.username, AccountOut(**account.dict())
+
 
 # Merick for get_hashed_password changed AccountOut
 authenticator = MyAuthenticator(os.environ["SIGNING_KEY"])

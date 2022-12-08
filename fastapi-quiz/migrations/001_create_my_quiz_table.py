@@ -12,7 +12,7 @@ steps = [
         ## Drop the table
         """
         DROP TABLE quiz_answer;
-        """
+        """,
     ],
     [
         ## Let the team create question and answers
@@ -34,7 +34,6 @@ steps = [
         ## Drop the table
         """
         DROP TABLE quiz_question_answer;
-        """
-    ]
-
+        """,
+    ],
 ]

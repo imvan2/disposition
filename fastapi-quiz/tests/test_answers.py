@@ -3,9 +3,12 @@ from main import app
 from queries.answers import AnswerRepo
 
 client = TestClient(app)
+
+
 class EmptyAnswerQueries:
     def get_all(self):
         return []
+
 
 def test_get_all_answers():
     # arrange

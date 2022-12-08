@@ -4,9 +4,11 @@ from queries.playlists import PlaylistRepo
 
 client = TestClient(app)
 
+
 class EmptyPlaylistQueries:
     def get_all(self):
         return []
+
 
 def test_get_all_playlists():
     # arrange

@@ -1,9 +1,17 @@
 import os
-from fastapi import APIRouter, Depends, Response, Request, HTTPException, status
+from fastapi import (
+    APIRouter,
+    Depends,
+    Response,
+    Request,
+    HTTPException,
+    status,
+)
 from queries.answers import AnswerIn, AnswerOut, AnswerRepo, Error
 from typing import List, Optional, Union
 from token_auth import get_current_user
-print (os.getcwd())
+
+print(os.getcwd())
 
 router = APIRouter()
 
@@ -14,7 +22,6 @@ not_authorized = HTTPException(
 )
 
 
-
 @router.get("/answers", response_model=Union[List[AnswerOut], Error])
 def get_all(
     repo: AnswerRepo = Depends(),
@@ -22,12 +29,13 @@ def get_all(
     return repo.get_all()
 
 
-@router.post("/answers", response_model = AnswerOut)
+@router.post("/answers", response_model=AnswerOut)
 def create_answer(
-    answer:AnswerIn,
+    answer: AnswerIn,
     repo: AnswerRepo = Depends(),
-    ):
+):
     return repo.create(answer)
+
 
 @router.delete("/answers/{q_number}", response_model=bool)
 def delete_answer(
@@ -36,16 +44,17 @@ def delete_answer(
 ) -> bool:
     return repo.delete(q_number)
 
+
 @router.get("/answers/{q_number}", response_model=Optional[AnswerOut])
 def get_one_answer(
-  q_number: int,
-  response: Response,
-  repo: AnswerRepo = Depends(),
+    q_number: int,
+    response: Response,
+    repo: AnswerRepo = Depends(),
 ) -> AnswerOut:
-  answer = repo.get_one(q_number)
-  if answer is None:
-    response.status_code = 404
-  return answer
+    answer = repo.get_one(q_number)
+    if answer is None:
+        response.status_code = 404
+    return answer
 
 
 @router.put("/answers/{id}", response_model=Union[AnswerOut, Error])

@@ -35,11 +35,9 @@ function App() {
               <Route path="/Results" element={<Results />} />
               <Route path="/History" element={<History />} />
             </Routes>
-
           </div>
         </AuthProvider>
       </BrowserRouter>
-
     </>
 
   );
