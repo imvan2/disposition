@@ -12,7 +12,7 @@ from starlette.middleware.cors import CORSMiddleware
 #     os.environ.get("CORS_HOST", "http://localhost"),
 #     "http://localhost:3000",
 # ]
-app = FastAPI(middleware=middleware)
+app = FastAPI(middleware=Middleware)
 
 middleware = [
     Middleware(
