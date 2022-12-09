@@ -28,7 +28,7 @@ middleware = [
     )
 ]
 
-app = FastAPI(middleware=Middleware)
+app = FastAPI(middleware=middleware)
 
 # app.add_middleware(
 #     CORSMiddleware,
