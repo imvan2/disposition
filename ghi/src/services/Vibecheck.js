@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 // import { useAuthContext } from "../authorization/useToken";
 
 const Vibecheck = () => {
@@ -18,7 +18,7 @@ const Vibecheck = () => {
 
   // getting the userID
   const [userID, setUserID] = useState(0);
-  const location = useLocation();
+  // const location = useLocation();
 
   // const { token } = useAuthContext();
 
@@ -80,7 +80,7 @@ const Vibecheck = () => {
     // } catch {
     //   setUserID(0);
     // }
-
+    setUserID(0);
     console.log("userID::", userID);
     // making a post request to save the answers to backend
     const data = { user_id: userID, mood: disposition, genre: genreStr };
