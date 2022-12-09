@@ -12,3 +12,4 @@ psycopg
 httpx
 requests
 black
+starlette
