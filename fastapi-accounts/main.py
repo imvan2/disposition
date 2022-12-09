@@ -2,19 +2,23 @@ from fastapi import FastAPI
 from routers import accounts
 from auth.authenticator import authenticator
 import os
-from fastapi.middleware.cors import CORSMiddleware
-
+# from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
 origins = [
     os.environ.get("CORS_HOST", "http://localhost"),
-    "http://localhost:3000", "https://moodz3.gitlab.io"
+    "http://localhost:3000",
+    "https://moodz3.gitlab.io",
+    "https://accounts-microservice.onrender.com/token",
+    "https://accounts-microservice.onrender.com/api/signup/token",
+
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
