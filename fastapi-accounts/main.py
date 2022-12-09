@@ -17,7 +17,7 @@ from starlette.middleware.cors import CORSMiddleware
 #     "https://accounts-microservice.onrender.com/api/signup/token",
 
 # ]
-app = FastAPI(middleware=middleware)
+app = FastAPI(middleware=Middleware)
 
 middleware = [
     Middleware(

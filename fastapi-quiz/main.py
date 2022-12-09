@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from routers import questions, answers
-from fastapi.middleware.cors import CORSMiddleware
+# from fastapi.middleware.cors import CORSMiddleware
 import os
 
 from starlette.middleware import Middleware
