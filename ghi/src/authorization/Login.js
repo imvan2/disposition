@@ -48,9 +48,9 @@ function Login() {
     const name = await login(username, password);
 
     if (name !== null) {
-      navigate("/Vibecheck");
+      navigate("/disposition/Vibecheck");
     } else {
-      navigate("/SignupForm");
+      navigate("/disposition/SignupForm");
     }
   };
 

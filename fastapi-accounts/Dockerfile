@@ -19,7 +19,7 @@ COPY auth auth
 # uncomment the following line
 COPY migrations migrations
 
-RUN pip install -r requirements.txt
+RUN python -m pip install -r requirements.txt
 # CMD uvicorn main:app --host 0.0.0.0 --port $PORT
 # CMD uvicorn main:app --host 0.0.0.0
 
