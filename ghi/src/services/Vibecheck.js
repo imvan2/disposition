@@ -55,30 +55,33 @@ const Vibecheck = () => {
     const mood = disposition + " " + genreStr;
     // setSubmitted(true);
 
-    try {
-      const username = location.state.username;
+    // try {
+    //   const username = location.state.username;
 
-      // GET request for username
-      const accountUrl = `${process.env.REACT_APP_ACCOUNTS_API_HOST}/accounts/${username}`;
-      const fetchConfig = {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const accountResponse = await fetch(accountUrl, fetchConfig);
-      if (accountResponse.ok) {
-        const user = await accountResponse.json();
-        if (user === null) {
-          setUserID(0);
-        } else {
-          setUserID(user.id);
-        }
-      }
-    } catch {
-      setUserID(0);
-    }
+    //   // GET request for username
+    //   const accountUrl = `${process.env.REACT_APP_ACCOUNTS_API_HOST}/accounts/${username}`;
+    //   const fetchConfig = {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   };
+    //   const accountResponse = await fetch(accountUrl, fetchConfig);
+    //   console.log("accountResponse::::", accountResponse);
+    //   if (accountResponse.ok) {
+    //     const user = await accountResponse.json();
+    //     console.log("user::::", user);
+    //     if (user === null) {
+    //       setUserID(0);
+    //     } else {
+    //       setUserID(user.id);
+    //     }
+    //   }
+    // } catch {
+    //   setUserID(0);
+    // }
 
+    console.log("userID::", userID);
     // making a post request to save the answers to backend
     const data = { user_id: userID, mood: disposition, genre: genreStr };
     const answersUrl = `${process.env.REACT_APP_QUIZ_API_HOST}/answers`;
@@ -89,12 +92,13 @@ const Vibecheck = () => {
         "Content-Type": "application/json",
       },
     };
-
+    console.log("answer data", data);
     const response = await fetch(answersUrl, fetchConfig);
+    console.log("answer response::::", response);
 
     if (response.ok) {
       const newData = await response.json();
-      console.log(newData);
+      console.log("newData::", newData);
     }
     // END
     // if user authenticated
