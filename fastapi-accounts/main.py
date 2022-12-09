@@ -20,6 +20,9 @@ from starlette.middleware.cors import CORSMiddleware
 
 origins = [
     "https://moodz3.gitlab.io",
+    "http://localhost:3000",
+    "http://localhost:8002",
+    "http://localhost:8001",
     "https://accounts-microservice.onrender.com/token",
     "https://accounts-microservice.onrender.com/api/signup/token",
 ]
