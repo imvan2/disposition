@@ -8,7 +8,7 @@ function History() {
 
   useEffect(() => {
     async function gettingData() {
-      const answersUrl = `http://localhost:8002/answers/`;
+      const answersUrl = `${process.env.REACT_APP_QUIZ_API_HOST}/answers/`;
       const fetchConfig = {
         method: "GET",
         headers: {
