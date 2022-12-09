@@ -7,7 +7,7 @@ function Login() {
   // From developer dashboard
   const CLIENT_ID = "5a2a9a022fc549efae7b97b447d43b5c";
   // must be set in the developer dashboard (source of Under Construction Warning)
-  const REDIRECT_URI = `${process.env.REACT_APP_ACCOUNTS_API_HOST}/Login`;
+  const REDIRECT_URI = "https://moodz3.gitlab.io/disposition/Login";
   // authorization endpoint
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   //requirement

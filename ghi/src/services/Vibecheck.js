@@ -59,7 +59,7 @@ const Vibecheck = () => {
       const username = location.state.username;
 
       // GET request for username
-      const accountUrl = `http://localhost:8001/accounts/${username}`;
+      const accountUrl = `${process.env.REACT_APP_ACCOUNTS_API_HOST}/accounts/${username}`;
       const fetchConfig = {
         method: "GET",
         headers: {
@@ -82,7 +82,7 @@ const Vibecheck = () => {
 
     // making a post request to save the answers to backend
     const data = { user_id: userID, mood: disposition, genre: genreStr };
-    const answersUrl = "http://localhost:8002/answers";
+    const answersUrl = `${process.env.REACT_APP_QUIZ_API_HOST}/answers`;
     const fetchConfig = {
       method: "POST",
       body: JSON.stringify(data),

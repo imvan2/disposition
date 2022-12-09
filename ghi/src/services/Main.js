@@ -72,7 +72,7 @@ const TopHits = () => {
             <br></br>
             <br></br>
             <br></br>
-            <div className="animate__zoomInDown shadow-lg p-3 mb-5 bg-white rounded">
+            <div className="animate__zoomInDown shadow-l g p-3 mb-5 bg-white rounded">
               <h1>BillBoard's Top 10 Hits</h1>
               <br></br>
               <table className="table table-striped">
