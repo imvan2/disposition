@@ -76,7 +76,6 @@ const Vibecheck = () => {
         }
       }
     } catch {
-      console.log("please login");
       setUserID(0);
     }
 

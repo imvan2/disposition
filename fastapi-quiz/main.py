@@ -9,8 +9,12 @@ import os
 app = FastAPI()
 
 origins = [
-    os.environ.get("CORS_HOST", "http://localhost"),
-    "http://localhost:3000", 
+    "https://moodz3.gitlab.io",
+    "http://localhost:3000",
+    "http://localhost:8002",
+    "http://localhost:8001/signup",
+    "https://accounts-microservice.onrender.com/token",
+    "https://accounts-microservice.onrender.com/api/signup/token",
 ]
 # app = FastAPI(middleware=Middleware)
 
