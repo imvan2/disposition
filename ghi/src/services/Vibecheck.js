@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { useAuthContext } from "../authorization/useToken";
 
 const Vibecheck = () => {
@@ -106,7 +106,7 @@ const Vibecheck = () => {
 
     // if user NOT authenticated
     // navigate to login/signup
-    navigate("/disposition/Results", { state: { result: mood } });
+    navigate("/Results", { state: { result: mood } });
 
     // save genre+outcome
     // const data = {}
