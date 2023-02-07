@@ -28,11 +28,9 @@ class BillboardOut(BaseModel):
     album_pic:str
     
 class BillboardRepo:
-
     def create_billboard(self, billboard: BillboardIn):
         with pool.connection() as conn:
             with conn.cursor() as db:
-                print("billboard:", billboard)
                 result = db.execute(
                     """
                     INSERT INTO billboard
@@ -42,16 +40,15 @@ class BillboardRepo:
                         album_pic)
                     VALUES
                         (%s, %s, %s, %s)
-                    RETURNING id;
+                    RETURNING rank;
                     """,
-                    [billboard.rank,
-                    billboard.title,
-                    billboard.artist,
-                    billboard.album_pic]
-                    )
-                id = result.fetchone()[0]
-                old_data = billboard.dict()
-                return BillboardOut(id=id, **old_data)
+                    [billboard["rank"],
+                    billboard["title"],
+                    billboard["artist"],
+                    billboard["album_pic"]]
+                )
+                rank = result.fetchone()[0]
+                return billboard
     
     def get_all(self):
         try:
@@ -70,10 +67,32 @@ class BillboardRepo:
                         ORDER BY rank;
                         """
                     )
-                    print("db:", db)
                     results = []
-                    for song in db:
-                        print("song in queries:", song)
+                    for item in db:
+                        song = BillboardOut(
+                            rank = item[0],
+                            title = item[1],
+                            artist = item[2],
+                            album_pic = item[3],
+                        )
+                        results.append(song)
                     return results
+        except Exception as e:
+            print(e)
+            
+    def delete(self, rank: int) -> bool:
+        try:
+            with connect(conninfo=os.environ["DATABASE_URL"], **keepalive_kwargs) as conn:
+                with conn.cursor() as db:
+                    
+                    db.execute(
+                        """
+                        DELETE FROM billboard
+                        WHERE rank = %s
+                        """,
+                        [rank],
+                    )
+                    print("db:", db)
+                    return True
         except Exception as e:
             print(e)
