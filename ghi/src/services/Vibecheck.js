@@ -241,7 +241,7 @@ const Vibecheck = () => {
               value="coffee"
             />
             <label className="form-check-label" htmlFor="inlineRadio2">
-              Cofee☕️
+              Coffee☕️
             </label>
           </div>
           <div className="form-check form-check-inline">
@@ -290,10 +290,7 @@ const Vibecheck = () => {
         </div>
 
         {/* third form */}
-        <div
-          className="btn-group shadow p-3 mb-5 bg-white rounded"
-          role="group"
-        >
+        <div className="btn-group shadow-lg p-3 mb-5 bg-white rounded">
           <label>Which best describes you?</label>
           <br />
           <button
