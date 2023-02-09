@@ -7,7 +7,11 @@ function Login() {
   // From developer dashboard
   const CLIENT_ID = "5a2a9a022fc549efae7b97b447d43b5c";
   // must be set in the developer dashboard (source of Under Construction Warning)
-  const REDIRECT_URI = "https://moodz3.gitlab.io/disposition/Login";
+  // const REDIRECT_URI = "https://moodz3.gitlab.io/disposition/Login";
+
+  // needed to create a REACT_APP_, react isn't able to get 'PUBLIC_URL' from docker-compose
+  const REDIRECT_URI = `${process.env.REACT_APP_PUBLIC_URL}/disposition/Login`;
+
   // authorization endpoint
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   //requirement
@@ -51,6 +55,7 @@ function Login() {
     const name = await login(username, password);
 
     if (name !== null) {
+      sessionStorage.setItem("username", username);
       navigate("/Vibecheck");
     } else {
       navigate("/SignupForm");
@@ -107,10 +112,11 @@ function Login() {
           <button className="btn btn-primary">Login</button>
           <div className="success-message">
             Welcome back! Great seeing you again. Can I get you a cup of tea?
+            
           </div>
           <p>
             Not a member yet? Sign-up
-            <a href={`${process.env.REACT_APP_ACCOUNTS_API_HOST}/signup`}>
+            <a href="/disposition/SignupForm">
               here
             </a>
           </p>

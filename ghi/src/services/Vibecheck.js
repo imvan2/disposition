@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 // import { useAuthContext } from "../authorization/useToken";
 
 const Vibecheck = () => {
@@ -18,7 +18,6 @@ const Vibecheck = () => {
 
   // getting the userID
   const [userID, setUserID] = useState(0);
-  // const location = useLocation();
 
   // const { token } = useAuthContext();
 
@@ -33,6 +32,34 @@ const Vibecheck = () => {
   //     );
   //   }
   // }
+
+  useEffect(() => {
+    const gettingUser = async () => {
+      if (window.sessionStorage.getItem("username") === undefined) {
+        console.log("window.sessionStorage.getItem(username):", window.sessionStorage.getItem("username"));
+        console.log("no user");
+        navigate("/Login");
+      } else {
+        const username = window.sessionStorage.getItem("username");
+
+        const accountUrl = `${process.env.REACT_APP_ACCOUNTS_API_HOST}/accounts/${username}`;
+        const fetchConfig = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const accountResponse = await fetch(accountUrl, fetchConfig);
+
+        if (accountResponse.ok) {
+          const user = await accountResponse.json();
+          setUserID(user.id);
+        }
+      }
+    };
+    gettingUser();
+  });
+
 
   // handling when the submit button is clicked
   const handleSubmit = async (event) => {
@@ -53,35 +80,7 @@ const Vibecheck = () => {
       disposition = "energetic";
     }
     const mood = disposition + " " + genreStr;
-    // setSubmitted(true);
 
-    // try {
-    //   const username = location.state.username;
-
-    //   // GET request for username
-    //   const accountUrl = `${process.env.REACT_APP_ACCOUNTS_API_HOST}/accounts/${username}`;
-    //   const fetchConfig = {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   };
-    //   const accountResponse = await fetch(accountUrl, fetchConfig);
-    //   console.log("accountResponse::::", accountResponse);
-    //   if (accountResponse.ok) {
-    //     const user = await accountResponse.json();
-    //     console.log("user::::", user);
-    //     if (user === null) {
-    //       setUserID(0);
-    //     } else {
-    //       setUserID(user.id);
-    //     }
-    //   }
-    // } catch {
-    //   setUserID(0);
-    // }
-    setUserID(0);
-    console.log("userID::", userID);
     // making a post request to save the answers to backend
     const data = { user_id: userID, mood: disposition, genre: genreStr };
     const answersUrl = `${process.env.REACT_APP_QUIZ_API_HOST}/answers`;
@@ -92,13 +91,11 @@ const Vibecheck = () => {
         "Content-Type": "application/json",
       },
     };
-    console.log("answer data", data);
+
     const response = await fetch(answersUrl, fetchConfig);
-    console.log("answer response::::", response);
 
     if (response.ok) {
       const newData = await response.json();
-      console.log("newData::", newData);
     }
     // END
     // if user authenticated
@@ -241,7 +238,7 @@ const Vibecheck = () => {
               value="coffee"
             />
             <label className="form-check-label" htmlFor="inlineRadio2">
-              Cofee☕️
+              Coffee☕️
             </label>
           </div>
           <div className="form-check form-check-inline">
@@ -290,10 +287,7 @@ const Vibecheck = () => {
         </div>
 
         {/* third form */}
-        <div
-          className="btn-group shadow p-3 mb-5 bg-white rounded"
-          role="group"
-        >
+        <div className="btn-group shadow-lg p-3 mb-5 bg-white rounded">
           <label>Which best describes you?</label>
           <br />
           <button

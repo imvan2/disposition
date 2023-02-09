@@ -117,7 +117,7 @@ const SignupForm = () => {
       )}
       <p>
         Already a member? Login{" "}
-        <a href={`${process.env.REACT_APP_ACCOUNTS_API_HOST}/Login`}>here</a>
+        <a href={`${process.env.PUBLIC_URL}/disposition/Login`}>here</a>
       </p>
     </form>
   );

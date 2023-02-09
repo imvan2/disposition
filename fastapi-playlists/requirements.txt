@@ -12,3 +12,7 @@ psycopg
 httpx
 requests
 black
+bs4
+aiohttp
+schedule
+time

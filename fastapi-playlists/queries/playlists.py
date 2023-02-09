@@ -69,7 +69,9 @@ class PlaylistRepo:
                     ],
                 )
                 id = result.fetchone()[0]
+                print("old_data before:", playlist)
                 old_data = playlist.dict()
+                print("old_data after:", **old_data)
                 return PlaylistOut(id=id, **old_data)
 
     def delete(self, playlist_id: str) -> bool:

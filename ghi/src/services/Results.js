@@ -19,7 +19,6 @@ function Results() {
     const [playlists, setPlaylists] = useState([])
 
     const location = useLocation();
-    // console.log("location:::", location)
 
     //used to get token from url
     useEffect(() => {
