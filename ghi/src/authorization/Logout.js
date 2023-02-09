@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 function Logout() {
     const [, , logout] = useToken();
-    console.log("logout::", logout)
-    // console.log("login::", login)
 
     const navigate = useNavigate();
     // const { token } = useAuthContext();
@@ -13,6 +11,7 @@ function Logout() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        sessionStorage.setItem("username", undefined);
         logout();
         navigate("/");
     }

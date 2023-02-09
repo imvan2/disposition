@@ -32,8 +32,8 @@ const TopHits = () => {
   const [loggedInBoth, setLoggedInBoth] = useState(false);
 
   const spotToken = window.localStorage.getItem("token");
-  console.log("spotToken:::", spotToken);
-  console.log("token::::", token);
+  // console.log("spotToken:::", spotToken);
+  // console.log("token::::", token);
 
   const checkingToken = (token, spotToken) => {
     if ((typeof (token) == "string") === true && (typeof (spotToken) == "string") === true) {
@@ -54,7 +54,7 @@ const TopHits = () => {
         <div className="col-xs-12 center-block text-center align-items-center justify-content-center">
           {/* <h1 className="animate__lightSpeedInRight display-5 fw-bold"></h1> */}
           <div className="col-lg-6 mx-auto">
-            <p className="display-5 animate__zoomInDown mt-5 h-100 d-flex  align-items-center justify-content-center ">
+            <p className="display-5 mt-5 h-100 d-flex  align-items-center justify-content-center ">
               The premiere solution for finding music that fits your vibe!
             </p>
             {/* <h1 className="display-5 fw-bold"></h1> */}
@@ -64,15 +64,15 @@ const TopHits = () => {
           <a href="/Login" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
             Get a Vibe Check
           </a> */}
-            {!loggedInBoth ? <a href="/disposition/Login" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
+            {!loggedInBoth ? <a href="/disposition/Login" button="button" className="btn btn-primary btn-lg center bg-secondary">
               Get a Vibe Check
-            </a> : <a href="/disposition/VibeCheck" button="button" className="animate__zoomInDown btn btn-primary btn-lg center bg-secondary">
+            </a> : <a href="/disposition/VibeCheck" button="button" className="btn btn-primary btn-lg center bg-secondary">
               Get a Vibe Check
             </a>}
             <br></br>
             <br></br>
             <br></br>
-            <div className="animate__zoomInDown shadow-l g p-3 mb-5 bg-white rounded">
+            <div className="shadow-l g p-3 mb-5 bg-white rounded">
               <h1>BillBoard's Top 100 Hits</h1>
               <br></br>
               <table className="table table-striped">
