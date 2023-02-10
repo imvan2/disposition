@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { useAuthContext } from "../authorization/useToken";
 
 const Vibecheck = () => {
@@ -35,13 +35,11 @@ const Vibecheck = () => {
 
   useEffect(() => {
     const gettingUser = async () => {
-      if (window.sessionStorage.getItem("username") === undefined) {
-        console.log("window.sessionStorage.getItem(username):", window.sessionStorage.getItem("username"));
-        console.log("no user");
+      const username = window.sessionStorage.getItem("username");
+
+      if (username === "undefined" || username == null) {
         navigate("/Login");
       } else {
-        const username = window.sessionStorage.getItem("username");
-
         const accountUrl = `${process.env.REACT_APP_ACCOUNTS_API_HOST}/accounts/${username}`;
         const fetchConfig = {
           method: "GET",
@@ -54,7 +52,7 @@ const Vibecheck = () => {
         if (accountResponse.ok) {
           const user = await accountResponse.json();
           setUserID(user.id);
-        }
+        };
       }
     };
     gettingUser();
@@ -96,6 +94,7 @@ const Vibecheck = () => {
 
     if (response.ok) {
       const newData = await response.json();
+      console.log("newData:", newData)
     }
     // END
     // if user authenticated
