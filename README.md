@@ -29,14 +29,14 @@ We are targeting general music consumers in the entertainment market who are loo
 - Visitors to the site can take a personality quiz pertaining to their specific mood by taking the Disposition's proprietary Vibe Check© quiz.
 - Using advance algorithms, the results page will populate with playlist matching their personality quiz
 
-- A top 10 page for a list view of the top 10 popular songs.
+- A top 100 page for a list view of the top 100 popular songs.
 
 - A list of results all users got from the personality quiz
 
 ---
 
 ## Endpoints
-- *Top 10 page*
+- *Top 100 page*
   - moodz3.gitlab.io/disposition
 - *User sign up page*
   - moodz3.gitlab.io/disposition/SignupForm
