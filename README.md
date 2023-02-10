@@ -1,4 +1,4 @@
-![logo](Disp_Logo_LG_DK.png)
+![logo](/images/Disp_Logo_LG.png)
 
 # Disposition
 * Software Engineer: Thinh Mai
@@ -12,7 +12,7 @@
 
 We are targeting general music consumers in the entertainment market who are looking for new music to listen to. Users of the application would find a wide array of popular music from different genres.
 
-![Home page](Home_page.png)
+![Home page](/images/Home_page.png)
 
 ---
 
